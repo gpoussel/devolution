@@ -13,5 +13,9 @@ export const useMetricStore = defineStore('metric', {
     addCoins(value: number) {
       this.coins += value;
     },
+    tick() {
+      // TODO: This shall obviously not be a random value
+      this.coins += Math.round(Math.random() * 100);
+    },
   },
 });
