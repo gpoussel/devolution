@@ -1,41 +1,52 @@
 <script setup lang="ts">
 import Decimal from 'break_infinity.js';
-
 import { useMetricStore } from '@/stores/metric';
+import { storeToRefs } from 'pinia';
 
 const metricStore = useMetricStore();
+const { formattedCoinsPerSecond } = storeToRefs(metricStore);
 
 function setCoins(value: number) {
   metricStore.setCoins(new Decimal(value));
 }
-
-function setToZero() {
-  setCoins(0);
-}
-
-function setToOneMillion() {
-  setCoins(1e9);
+function setCoinsPerSecond(value: number) {
+  metricStore.setCoinsPerSecond(new Decimal(value));
 }
 </script>
 
 <template>
-  <footer class="text-white text-center fixed inset-x-0 bottom-0 p-2 flex gap-3 border-t-2 border-white">
-    <div class="text-lg font-bold">
-        DEV
-    </div>
+  <footer
+    class="text-white text-center fixed inset-x-0 bottom-0 p-2 flex items-center gap-3 border-t-2 border-white"
+  >
+    <div class="text-lg font-bold">DEV</div>
     <button
       type="button"
-      @click="setToZero()"
+      @click="setCoins(0)"
       class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-dark-700 hover:bg-dark-800"
     >
       0 C
     </button>
     <button
       type="button"
-      @click="setToOneMillion()"
+      @click="setCoins(1e9)"
       class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-dark-700 hover:bg-dark-800"
     >
       1M C
+    </button>
+    <p>CPS : {{ formattedCoinsPerSecond }}</p>
+    <button
+      type="button"
+      @click="setCoinsPerSecond(0)"
+      class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-dark-700 hover:bg-dark-800"
+    >
+      CPS = 0
+    </button>
+     <button
+      type="button"
+      @click="setCoinsPerSecond(10)"
+      class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-dark-700 hover:bg-dark-800"
+    >
+      CPS = 10
     </button>
   </footer>
 </template>

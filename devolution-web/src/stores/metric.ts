@@ -9,7 +9,11 @@ export const useMetricStore = defineStore('metric', {
     const formattedCoins = computed(() => {
       return numberFormat.formatShort(coins.value);
     });
-    return { coins, formattedCoins };
+    const coinsPerSecond = ref(new Decimal(0));
+    const formattedCoinsPerSecond = computed(() => {
+      return numberFormat.formatShort(coinsPerSecond.value);
+    });
+    return { coins, coinsPerSecond, formattedCoins, formattedCoinsPerSecond };
   },
   actions: {
     addCoins(value: Decimal) {
@@ -18,9 +22,14 @@ export const useMetricStore = defineStore('metric', {
     setCoins(value: Decimal) {
       this.coins = value;
     },
+    addCoinsPerSecond(value: Decimal) {
+      this.coinsPerSecond = this.coinsPerSecond.add(value);
+    },
+    setCoinsPerSecond(value: Decimal) {
+      this.coinsPerSecond = value;
+    },
     tick() {
-      // TODO: This shall obviously not be a random value
-      this.addCoins(Decimal.randomDecimalForTesting(10).abs().floor());
+      this.addCoins(this.coinsPerSecond);
     },
   },
 });

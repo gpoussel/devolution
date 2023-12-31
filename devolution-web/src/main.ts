@@ -15,7 +15,7 @@ app.use(router);
 app.mount('#app');
 
 const metric = useMetricStore();
-const gameLoop = new GameLoop(5);
+const gameLoop = new GameLoop(1);
 
 (async () => {
   await gameLoop.start(() => {

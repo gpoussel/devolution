@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import Decimal from 'break_infinity.js';
+
 import { useMetricStore } from '@/stores/metric';
+import { BASIC_ACTIONS, type BasicAction } from '@/game/design';
 
 const metricStore = useMetricStore();
 
 // TODO: This shall no longer be used
-function increaseCoins() {
-  metricStore.addCoins(new Decimal(Math.round(Math.random() * 100)));
+function performBasicAction(action: BasicAction) {
+  metricStore.addCoinsPerSecond(new Decimal(action.coinsGainedPerSeconds));
 }
+
+const actions = BASIC_ACTIONS;
 </script>
 
 <template>
@@ -15,18 +19,18 @@ function increaseCoins() {
     <div class="w-8/12 h-full grid grid-cols-2 gap-3">
       <div
         class="flex items-center col-span-1 bg-black rounded-md px-4 pt-2 pb-4 border border-2 border-transparent hover:border-white hover:cursor-pointer select-none"
-        @click="increaseCoins()"
-        v-for="n in 10"
-        :key="n"
+        @click="performBasicAction(action)"
+        v-for="action in actions"
+        :key="action.id"
       >
         <div class="w-8/12">
-          <p class="font-bold text-xl">Code</p>
-          <p>Develop new features</p>
+          <p class="font-bold text-xl">{{ action.name }}</p>
+          <p>{{ action.description }}</p>
         </div>
         <div class="w-4/12 flex flex-row text-right">
           <div class="grow"></div>
           <img src="../assets/icons/icons8-coin-96.png" class="h-6 mr-1" />
-          <span class="self-center whitespace-nowrap">+1&#120148;/s</span>
+          <span class="self-center whitespace-nowrap">+{{ action.coinsGainedPerSeconds }}/s</span>
         </div>
       </div>
     </div>
