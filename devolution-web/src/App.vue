@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router';
-import HelloWorld from './components/HelloWorld.vue';
+import TopBanner from './components/global/TopBanner.vue';
 </script>
 
 <template>
+  <TopBanner />
   <header>
-    <div class="wrapper">
-      <HelloWorld msg="Devolution" />
-
+    <div>
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
@@ -63,12 +62,6 @@ nav a:first-of-type {
 
   .logo {
     margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
   }
 
   nav {

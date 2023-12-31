@@ -8,6 +8,9 @@
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true
   },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[json]": {
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true
