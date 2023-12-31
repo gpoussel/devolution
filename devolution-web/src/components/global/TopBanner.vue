@@ -13,20 +13,20 @@
       </div>
       <div class="flex items-center space-x-6">
         <div class="flex w-20">
-            <img src="../../assets/icons/icons8-coin-96.png" class="h-7 mr-1" />
-            <span class="self-center whitespace-nowrap">12</span>
+          <img src="../../assets/icons/icons8-coin-96.png" class="h-7 mr-1" />
+          <span class="self-center whitespace-nowrap">12</span>
         </div>
         <div class="flex w-20">
-            <img src="../../assets/icons/icons8-star-96.png" class="h-7 mr-1" />
-            <span class="self-center whitespace-nowrap">12345</span>
+          <img src="../../assets/icons/icons8-star-96.png" class="h-7 mr-1" />
+          <span class="self-center whitespace-nowrap">12345</span>
         </div>
         <div class="flex w-20">
-            <img src="../../assets/icons/icons8-red-heart-96.png" class="h-7 mr-1" />
-            <span class="self-center whitespace-nowrap">12345</span>
+          <img src="../../assets/icons/icons8-red-heart-96.png" class="h-7 mr-1" />
+          <span class="self-center whitespace-nowrap">12345</span>
         </div>
         <div class="flex w-20">
-            <img src="../../assets/icons/icons8-lady-beetle-96.png" class="h-7 mr-1" />
-            <span class="self-center whitespace-nowrap">12345</span>
+          <img src="../../assets/icons/icons8-lady-beetle-96.png" class="h-7 mr-1" />
+          <span class="self-center whitespace-nowrap">12345</span>
         </div>
       </div>
       <div class="flex items-center">
