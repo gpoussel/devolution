@@ -1,0 +1,14 @@
+{
+  "[vue]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  },
+  "[css]": {
+    "editor.defaultFormatter": "aeschli.vscode-css-formatter",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  },
+  "css.format.maxPreserveNewLines": 0,
+  "stylelint.validate": ["css", "vue"],
+  "stylelint.configBasedir": "devolution-web/"
+}
