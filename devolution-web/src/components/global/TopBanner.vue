@@ -3,24 +3,24 @@
     <div class="flex items-center justify-between w-full px-3 py-3 mx-auto max-w-7xl lg:px-4">
       <div class="flex items-center">
         <div class="flex items-center justify-between">
-          <a href="/" class="flex">
+          <RouterLink to="/" class="flex">
             <img src="../../assets/devolution/logo.png" class="h-8 mr-3" alt="Devolution Logo" />
             <span class="self-center text-2xl font-bold whitespace-nowrap text-green"
               >Devolution</span
             >
-          </a>
+          </RouterLink>
         </div>
       </div>
       <div class="flex items-center">
         <ul class="flex-col hidden pt-6 lg:flex-row lg:self-center lg:py-0 lg:flex">
           <li class="mb-3 lg:px-2 xl:px-2 lg:mb-0">
-            <a href="javascript:void(0)" class="text-sm font-medium text-dark-900 hover:text-green"
-              >Settings</a
+            <RouterLink to="" class="text-sm font-medium text-dark-900 hover:text-green"
+              >Settings</RouterLink
             >
           </li>
           <li class="mb-3 lg:px-2 xl:px-2 lg:mb-0">
-            <a href="javascript:void(0)" class="text-sm font-medium text-dark-900 hover:text-green"
-              >About</a
+            <RouterLink to="/about" class="text-sm font-medium text-dark-900 hover:text-green"
+              >About</RouterLink
             >
           </li>
         </ul>
