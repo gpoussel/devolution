@@ -16,7 +16,10 @@ app.mount('#app');
 
 const metric = useMetricStore();
 const gameLoop = new GameLoop(5);
-await gameLoop.start(() => {
-  console.debug(`${new Date().getTime()} - tick()`);
-  metric.tick();
-});
+
+(async () => {
+  await gameLoop.start(() => {
+    console.debug(`${new Date().getTime()} - tick()`);
+    metric.tick();
+  });
+})();
