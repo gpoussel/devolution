@@ -5,9 +5,15 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  break_infinity.js:
+    specifier: ^2.2.0
+    version: 2.2.0
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(typescript@5.3.3)(vue@3.4.3)
+  swarm-numberformat:
+    specifier: ^0.4.0
+    version: 0.4.0(decimal.js@7.5.1)
   vue:
     specifier: ^3.3.11
     version: 3.4.3(typescript@5.3.3)
@@ -1074,6 +1080,12 @@ packages:
       fill-range: 7.0.1
     dev: true
 
+  /break_infinity.js@2.2.0:
+    resolution: {integrity: sha512-Li+150FfqGDj4gcJrgEJatFAR0OmfZyZLBGFKSHgjWKqKgWRm7GA+OmSSHwDFqkdOOjoY+R8X/jyDX/9MQEjmA==}
+    dependencies:
+      pad-end: 1.0.2
+    dev: false
+
   /browserslist@4.22.2:
     resolution: {integrity: sha512-0UgcrvQmBDvZHFGdYUehrCNIazki7/lUP3kkoi/r3YB2amZbFM9J43ZRkJTXBUZK4gmx56+Sqk9+Vs9mwZx9+A==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
@@ -1231,6 +1243,10 @@ packages:
     dependencies:
       ms: 2.1.2
     dev: true
+
+  /decimal.js@7.5.1:
+    resolution: {integrity: sha512-1K5Y6MykxQYfHBcFfAj2uBaLmwreq4MsjsvrlgcEOvg+X82IeeXlIVIVkBMiypksu+yo9vcYP6lfU3qTedofSQ==}
+    dev: false
 
   /deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
@@ -2125,6 +2141,10 @@ packages:
       p-limit: 3.1.0
     dev: true
 
+  /pad-end@1.0.2:
+    resolution: {integrity: sha512-pHkQejQ2oo08iXEDDFYxUK1xPe8L5fpbLSpkKk+ytimW70S8golMYFP9nAPTLXW6DTt+bF5QLcbswx5imMszHg==}
+    dev: false
+
   /parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
     engines: {node: '>=6'}
@@ -2695,6 +2715,14 @@ packages:
   /svg-tags@1.0.0:
     resolution: {integrity: sha512-ovssysQTa+luh7A5Weu3Rta6FJlFBBbInjOh722LIt6klpU2/HtdUbszju/G4devcvk8PGt7FCLv5wftu3THUA==}
     dev: true
+
+  /swarm-numberformat@0.4.0(decimal.js@7.5.1):
+    resolution: {integrity: sha512-Fs00WiW2G1505GXXawEAvHsFrznjyDCqyTySE1aFO5MdaheX1CUt7XhAauYq6xowGIpUom15o2pFN4cyljaVXg==}
+    peerDependencies:
+      decimal.js: ^7.1.0
+    dependencies:
+      decimal.js: 7.5.1
+    dev: false
 
   /synckit@0.8.8:
     resolution: {integrity: sha512-HwOKAP7Wc5aRGYdKH+dw0PRRpbO841v2DENBtjnR5HFWoiNByAl7vrx3p0G/rCyYXQsrxqtX48TImFtPcIHSpQ==}
