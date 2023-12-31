@@ -10,3 +10,5 @@ This game is developed using web technologies (HTML, CSS and Typescript) using V
 ## About
 
 Devolution is made available under the Apache License, version 2.0. Some assets have been downloaded or purchased from itch.io. Some of them have been edited from their orginal form, which is allowed under their license. If you would like to use their assets for your own project, then **PLEASE PURCHASE IT DIRECTLY FROM THEM**.
+
+* Status icons (coin, star, read heart and bug) are provided by [Icons8](https://icons8.com/).

@@ -11,8 +11,26 @@
           </RouterLink>
         </div>
       </div>
+      <div class="flex items-center space-x-6">
+        <div class="flex w-20">
+            <img src="../../assets/icons/icons8-coin-96.png" class="h-7 mr-1" />
+            <span class="self-center whitespace-nowrap">12</span>
+        </div>
+        <div class="flex w-20">
+            <img src="../../assets/icons/icons8-star-96.png" class="h-7 mr-1" />
+            <span class="self-center whitespace-nowrap">12345</span>
+        </div>
+        <div class="flex w-20">
+            <img src="../../assets/icons/icons8-red-heart-96.png" class="h-7 mr-1" />
+            <span class="self-center whitespace-nowrap">12345</span>
+        </div>
+        <div class="flex w-20">
+            <img src="../../assets/icons/icons8-lady-beetle-96.png" class="h-7 mr-1" />
+            <span class="self-center whitespace-nowrap">12345</span>
+        </div>
+      </div>
       <div class="flex items-center">
-        <ul class="flex-col hidden pt-6 lg:flex-row lg:self-center lg:py-0 lg:flex">
+        <ul class="flex-col pt-6 lg:flex-row lg:self-center lg:py-0 lg:flex">
           <li class="mb-3 lg:px-2 xl:px-2 lg:mb-0">
             <RouterLink to="" class="text-sm font-medium text-dark-900 hover:text-green"
               >Settings</RouterLink
