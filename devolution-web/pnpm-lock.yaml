@@ -67,6 +67,9 @@ devDependencies:
   stylelint-config-standard:
     specifier: ^36.0.0
     version: 36.0.0(stylelint@16.1.0)
+  tailwind-shades-for-custom-colors:
+    specifier: ^1.0.2
+    version: 1.0.2
   tailwindcss:
     specifier: ^3.4.0
     version: 3.4.0
@@ -2710,6 +2713,10 @@ packages:
       slice-ansi: 4.0.0
       string-width: 4.2.3
       strip-ansi: 6.0.1
+    dev: true
+
+  /tailwind-shades-for-custom-colors@1.0.2:
+    resolution: {integrity: sha512-vZp/k+YORitsBya4MaApp7VG64dB5AeZYGZrxr9TLDzGiJodH+Qtp6xEdkis3Iw0hIlazxGysZPPcbR+cjxz7w==}
     dev: true
 
   /tailwindcss@3.4.0:
