@@ -8,7 +8,9 @@ export default {
     extend: {
       // Inspired by https://lospec.com/palette-list/pear36
       colors: {
+        black: '#272736',
         dark: '#322947',
+        purple: '#473b78',
         green: '#3ca370',
         blue: '#4da6ff',
         white: '#ffffeb',
