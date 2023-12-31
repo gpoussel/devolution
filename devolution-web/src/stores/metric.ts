@@ -15,6 +15,9 @@ export const useMetricStore = defineStore('metric', {
     addCoins(value: Decimal) {
       this.coins = this.coins.add(value);
     },
+    setCoins(value: Decimal) {
+      this.coins = value;
+    },
     tick() {
       // TODO: This shall obviously not be a random value
       this.addCoins(Decimal.randomDecimalForTesting(10).abs().floor());

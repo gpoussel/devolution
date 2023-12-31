@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import Decimal from 'break_infinity.js';
 import { useMetricStore } from '@/stores/metric';
 
 const metricStore = useMetricStore();
 
 // TODO: This shall no longer be used
 function increaseCoins() {
-  metricStore.addCoins(Math.round(Math.random() * 100));
+  metricStore.addCoins(new Decimal(Math.round(Math.random() * 100)));
 }
 </script>
 
