@@ -1,5 +1,13 @@
 {
+  "files.trimTrailingWhitespace": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
   "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+  },
+  "[json]": {
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true
   },
@@ -9,6 +17,6 @@
     "editor.formatOnPaste": true
   },
   "css.format.maxPreserveNewLines": 0,
-  "stylelint.validate": ["css", "vue"],
+  "stylelint.validate": ["css"],
   "stylelint.configBasedir": "devolution-web/"
 }
