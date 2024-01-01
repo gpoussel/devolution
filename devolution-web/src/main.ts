@@ -2,7 +2,7 @@ import './assets/css/main.css';
 
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-import piniaPluginPersistedState from 'pinia-plugin-persistedstate';
+import { createPersistedState } from 'pinia-plugin-persistedstate';
 
 import App from './App.vue';
 import router from './router';
@@ -12,7 +12,8 @@ import { useMetricStore } from './stores/metric';
 
 function createStoreManager() {
   const pinia = createPinia();
-  pinia.use(piniaPluginPersistedState);
+  const persistedState = createPersistedState();
+  pinia.use(persistedState);
   return pinia;
 }
 
