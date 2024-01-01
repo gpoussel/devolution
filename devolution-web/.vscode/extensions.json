@@ -4,6 +4,7 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "stylelint.vscode-stylelint",
-    "aeschli.vscode-css-formatter"
+    "aeschli.vscode-css-formatter",
+    "Vue.volar"
   ]
 }
