@@ -2,6 +2,7 @@
 import { storeToRefs } from 'pinia';
 import { useMetricStore } from '@/stores/metric';
 import ApplicationTitle from './top/ApplicationTitle.vue';
+import ApplicationLinks from './top/ApplicationLinks.vue';
 
 const metricStore = useMetricStore();
 const { formattedCoins } = storeToRefs(metricStore);
@@ -29,20 +30,7 @@ const { formattedCoins } = storeToRefs(metricStore);
           <span class="self-center whitespace-nowrap">12345</span>
         </div>
       </div>
-      <div class="flex items-center">
-        <ul class="flex-col pt-6 lg:flex-row lg:self-center lg:py-0 lg:flex">
-          <li class="mb-3 lg:px-2 xl:px-2 lg:mb-0">
-            <RouterLink to="" class="text-sm font-medium text-dark-900 hover:text-green"
-              >Settings</RouterLink
-            >
-          </li>
-          <li class="mb-3 lg:px-2 xl:px-2 lg:mb-0">
-            <RouterLink to="/about" class="text-sm font-medium text-dark-900 hover:text-green"
-              >About</RouterLink
-            >
-          </li>
-        </ul>
-      </div>
+      <ApplicationLinks />
     </div>
   </header>
 </template>
