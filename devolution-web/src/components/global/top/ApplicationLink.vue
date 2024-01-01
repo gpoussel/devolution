@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { route, name } = withDefaults(
+withDefaults(
   defineProps<{
     route?: string;
     name?: string;

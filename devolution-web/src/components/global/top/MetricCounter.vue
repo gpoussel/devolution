@@ -5,7 +5,7 @@ import { useMetricStore } from '@/stores/metric';
 const metricStore = useMetricStore();
 const storeProperties = storeToRefs(metricStore);
 
-const { icon, property } = defineProps<{
+defineProps<{
   icon: string;
   property?: 'formattedCoins' | undefined;
 }>();
