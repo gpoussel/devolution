@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { useMetricStore } from '@/stores/metric';
+import ApplicationTitle from './top/ApplicationTitle.vue';
 
 const metricStore = useMetricStore();
 const { formattedCoins } = storeToRefs(metricStore);
@@ -9,16 +10,7 @@ const { formattedCoins } = storeToRefs(metricStore);
 <template>
   <header class="sticky top-0 z-10 flex-none w-full mx-auto bg-white border-b border-gray-200">
     <div class="flex items-center justify-between w-full px-3 py-3 mx-auto max-w-7xl lg:px-4">
-      <div class="flex items-center">
-        <div class="flex items-center justify-between">
-          <RouterLink to="/" class="flex">
-            <img src="../../assets/devolution/logo.png" class="h-8 mr-3" alt="Devolution Logo" />
-            <span class="self-center text-2xl font-bold whitespace-nowrap text-green"
-              >Devolution</span
-            >
-          </RouterLink>
-        </div>
-      </div>
+      <ApplicationTitle />
       <div class="flex items-center space-x-6">
         <div class="flex w-20">
           <img src="../../assets/icons/icons8-coin-96.png" class="h-7 mr-1" />
