@@ -30,8 +30,8 @@ const actions = BASIC_ACTIONS;
         :key="action.id"
       >
         <div class="w-8/12">
-          <p class="font-bold text-xl">{{ action.name }}</p>
-          <p class="text-sm">{{ action.description }}</p>
+          <p class="font-bold text-xl" v-text="action.name"></p>
+          <p class="text-sm" v-text="action.description"></p>
           <p class="mt-4">Current level: {{ purchasedActions[action.id] }} (0 &#8450;/s)</p>
           <p class="">
             Level {{ purchasedActions[action.id] + 1 }} cost:
