@@ -10,7 +10,6 @@ export const useMetricStore = defineStore('metric', {
     return { coins, coinsPerSecond };
   },
   getters: {
-    formattedCoins: (state) => numberFormat.formatShort(state.coins),
     formattedCoinsPerSecond: (state) => numberFormat.formatShort(state.coinsPerSecond),
   },
   actions: {

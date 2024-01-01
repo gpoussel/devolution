@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import Decimal from 'break_infinity.js';
-import * as numberFormat from 'swarm-numberformat';
 import { storeToRefs } from 'pinia';
+
+import CoinCounter from '../utils/CoinCounter.vue';
 
 import { useActionStore } from '@/stores/action';
 import { useMetricStore } from '@/stores/metric';
@@ -34,12 +35,10 @@ function performAction() {
       <p class="mt-4">Current level: {{ purchasedActions[action.id] }} (0 &#8450;/s)</p>
       <p class="">
         Level {{ purchasedActions[action.id] + 1 }} cost:
-        <strong
-          >{{
-            numberFormat.formatShort(getUpgradeCost(action, purchasedActions[action.id] + 1))
-          }}
-          &#8450;</strong
-        >
+        <CoinCounter
+          :value="getUpgradeCost(action, purchasedActions[action.id] + 1)"
+          class="font-bold"
+        />
       </p>
     </div>
     <div class="w-4/12 flex flex-row text-right">
