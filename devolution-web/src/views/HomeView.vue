@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import Decimal from 'break_infinity.js';
+import * as numberFormat from 'swarm-numberformat';
+import { storeToRefs } from 'pinia';
 
+import { useActionStore } from '@/stores/action';
 import { useMetricStore } from '@/stores/metric';
-import { BASIC_ACTIONS, type BasicAction } from '@/game/design';
+import { BASIC_ACTIONS, getUpgradeCost, type BasicAction } from '@/game/design';
 
 const metricStore = useMetricStore();
+const actionStore = useActionStore();
+const { purchasedActions } = storeToRefs(actionStore);
 
 // TODO: This shall no longer be used
 function performBasicAction(action: BasicAction) {
@@ -25,7 +30,17 @@ const actions = BASIC_ACTIONS;
       >
         <div class="w-8/12">
           <p class="font-bold text-xl">{{ action.name }}</p>
-          <p>{{ action.description }}</p>
+          <p class="text-sm">{{ action.description }}</p>
+          <p class="mt-4">Current level: {{ purchasedActions[action.id] }} (0 &#8450;/s)</p>
+          <p class="">
+            Level {{ purchasedActions[action.id] + 1 }} cost:
+            <strong
+              >{{
+                numberFormat.formatShort(getUpgradeCost(action, purchasedActions[action.id] + 1))
+              }}
+              &#8450;</strong
+            >
+          </p>
         </div>
         <div class="w-4/12 flex flex-row text-right">
           <div class="grow"></div>

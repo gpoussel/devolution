@@ -1,32 +1,64 @@
+import Decimal from 'break_infinity.js';
+
 export interface BasicAction {
   name: string;
   description: string;
   coinsGainedPerSeconds: number;
+  costFactor: {
+    initial: Decimal;
+    factor: Decimal;
+    exponent: Decimal;
+  };
 }
 
 export const BASIC_ACTIONS = [
   {
-    id: '87134f33-0869-57cc-8bc8-b80688f2ff7f',
+    id: 'basic-action-1',
     name: 'Development',
-    description: 'Keep developing existing features',
+    description: 'Working on existing features',
     coinsGainedPerSeconds: 1,
+    costFactor: {
+      initial: Decimal.fromNumber(0),
+      factor: Decimal.fromNumber(10),
+      exponent: Decimal.fromNumber(2.05),
+    },
   },
   {
-    id: '0253ea89-2004-5efb-bbda-07b13000a094',
+    id: 'basic-action-2',
     name: 'Designing',
     description: 'Designing new features',
     coinsGainedPerSeconds: 2,
+    costFactor: {
+      initial: Decimal.fromNumber(0),
+      factor: Decimal.fromNumber(500),
+      exponent: Decimal.fromNumber(1.85),
+    },
   },
   {
-    id: '8a4fd21b-a724-5a28-a9c8-39aced8c09ad',
+    id: 'basic-action-3',
     name: 'Bug fixing',
     description: 'Tracking down those nasty bugs',
     coinsGainedPerSeconds: 4,
+    costFactor: {
+      initial: Decimal.fromNumber(0),
+      factor: Decimal.fromNumber(11000),
+      exponent: Decimal.fromNumber(1.75),
+    },
   },
   {
-    id: 'c926ba89-0eb3-5b37-bc55-8d1c87214ae3',
+    id: 'basic-action-4',
     name: 'Optimization',
     description: 'Improve game performances',
     coinsGainedPerSeconds: 8,
+    costFactor: {
+      initial: Decimal.fromNumber(0),
+      factor: Decimal.fromNumber(200000),
+      exponent: Decimal.fromNumber(1.65),
+    },
   },
 ];
+
+export function getUpgradeCost(basicAction: BasicAction, targetLevel: number): Decimal {
+  const { initial, factor, exponent } = basicAction.costFactor;
+  return initial.add(Decimal.pow(exponent, targetLevel - 1).times(factor));
+}
