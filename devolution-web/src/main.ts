@@ -2,6 +2,7 @@ import './assets/css/main.css';
 
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
+import piniaPluginPersistedState from 'pinia-plugin-persistedstate';
 
 import App from './App.vue';
 import router from './router';
@@ -9,11 +10,21 @@ import GameLoopWorker from './worker/GameLoopWorker?worker';
 import type { WorkerMessageType } from './worker/message/common';
 import { useMetricStore } from './stores/metric';
 
-const app = createApp(App);
+function createStoreManager() {
+  const pinia = createPinia();
+  pinia.use(piniaPluginPersistedState);
+  return pinia;
+}
 
-app.use(createPinia());
-app.use(router);
-app.mount('#app');
+function createApplication() {
+  const app = createApp(App);
+  app.use(createStoreManager());
+  app.use(router);
+  app.mount('#app');
+  return app;
+}
+
+createApplication();
 
 const metric = useMetricStore();
 function tick() {
