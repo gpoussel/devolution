@@ -11,6 +11,6 @@ const { coins } = storeToRefs(metricStore);
 <template>
   <div class="flex w-20">
     <img :src="coinIcon" class="h-7 mr-1" />
-    <CoinCounter :value="coins" class="self-center whitespace-nowrap" />
+    <CoinCounter :value="coins" class="self-center" />
   </div>
 </template>

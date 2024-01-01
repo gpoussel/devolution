@@ -8,5 +8,5 @@ defineProps<{
 </script>
 
 <template>
-  <span>{{ formatDecimal(value) }}&nbsp;&#8450;</span>
+  <span class="whitespace-nowrap">{{ formatDecimal(value) }}&nbsp;&#8450;</span>
 </template>

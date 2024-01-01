@@ -3,6 +3,7 @@ import Decimal from 'break_infinity.js';
 import { storeToRefs } from 'pinia';
 
 import CoinCounter from '../utils/CoinCounter.vue';
+import CoinPerSecondCounter from '../utils/CoinPerSecondCounter.vue';
 
 import { useActionStore } from '@/stores/action';
 import { useMetricStore } from '@/stores/metric';
@@ -32,7 +33,11 @@ function performAction() {
     <div class="w-8/12">
       <p class="font-bold text-xl" v-text="action.name"></p>
       <p class="text-sm" v-text="action.description"></p>
-      <p class="mt-4">Current level: {{ purchasedActions[action.id] }} (0 &#8450;/s)</p>
+      <p class="mt-4">
+        Current level: {{ purchasedActions[action.id] }} (<CoinPerSecondCounter
+          :value="new Decimal(0)"
+        />)
+      </p>
       <p class="">
         Level {{ purchasedActions[action.id] + 1 }} cost:
         <CoinCounter
@@ -44,7 +49,11 @@ function performAction() {
     <div class="w-4/12 flex flex-row text-right">
       <div class="grow"></div>
       <img src="../../assets/icons/icons8-coin-96.png" class="h-6 mr-1" />
-      <span class="self-center whitespace-nowrap">+{{ action.coinsGainedPerSeconds }}/s</span>
+      <CoinPerSecondCounter
+        class="self-center"
+        :plus="true"
+        :value="action.coinsGainedPerSeconds"
+      />
     </div>
   </div>
 </template>

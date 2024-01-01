@@ -4,12 +4,13 @@ import { useMetricStore } from '@/stores/metric';
 import { storeToRefs } from 'pinia';
 
 import CoinCounter from '../utils/CoinCounter.vue';
+import CoinPerSecondCounter from '../utils/CoinPerSecondCounter.vue';
 import DevelopmentBarAction from './development/DevelopmentBarAction.vue';
 import DevelopmentBarTitle from './development/DevelopmentBarTitle.vue';
 import DevelopmentBarText from './development/DevelopmentBarText.vue';
 
 const metricStore = useMetricStore();
-const { formattedCoinsPerSecond } = storeToRefs(metricStore);
+const { coinsPerSecond } = storeToRefs(metricStore);
 
 function setCoins(value: number) {
   metricStore.setCoins(new Decimal(value));
@@ -35,9 +36,13 @@ function clearSave() {
     <DevelopmentBarAction @click="setCoins(1e9)">
       <CoinCounter :value="new Decimal(1e9)"></CoinCounter
     ></DevelopmentBarAction>
-    <DevelopmentBarText>CPS : {{ formattedCoinsPerSecond }}</DevelopmentBarText>
-    <DevelopmentBarAction @click="setCoinsPerSecond(0)">CPS = 0</DevelopmentBarAction>
-    <DevelopmentBarAction @click="setCoinsPerSecond(10)">CPS = 10</DevelopmentBarAction>
+    <DevelopmentBarText>CPS: <CoinPerSecondCounter :value="coinsPerSecond" /></DevelopmentBarText>
+    <DevelopmentBarAction @click="setCoinsPerSecond(0)"
+      >CPS =&nbsp;<CoinPerSecondCounter :value="new Decimal(0)"
+    /></DevelopmentBarAction>
+    <DevelopmentBarAction @click="setCoinsPerSecond(10)"
+      >CPS =&nbsp;<CoinPerSecondCounter :value="new Decimal(10)"
+    /></DevelopmentBarAction>
     <div class="flex-grow"></div>
     <DevelopmentBarAction type="danger" @click="clearSave()">🗑️</DevelopmentBarAction>
   </footer>
