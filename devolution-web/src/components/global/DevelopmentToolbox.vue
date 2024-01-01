@@ -21,7 +21,7 @@ function clearSave() {
 
 <template>
   <footer
-    class="text-white text-center fixed inset-x-0 bottom-0 p-2 flex items-center gap-3 border-t-2 border-white"
+    class="text-white text-center fixed z-50 inset-x-0 bottom-0 p-2 flex gap-3 border-t-2 border-white"
   >
     <div class="text-lg font-bold">DEV</div>
     <button
