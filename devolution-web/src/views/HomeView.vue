@@ -14,6 +14,7 @@ const { purchasedActions } = storeToRefs(actionStore);
 // TODO: This shall no longer be used
 function performBasicAction(action: BasicAction) {
   metricStore.addCoinsPerSecond(new Decimal(action.coinsGainedPerSeconds));
+  actionStore.increaseLevel(action);
 }
 
 const actions = BASIC_ACTIONS;

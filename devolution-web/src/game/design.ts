@@ -1,6 +1,7 @@
 import Decimal from 'break_infinity.js';
 
 export interface BasicAction {
+  id: string;
   name: string;
   description: string;
   coinsGainedPerSeconds: number;
@@ -58,7 +59,7 @@ export const BASIC_ACTIONS = [
   },
 ];
 
-export function getUpgradeCost(basicAction: BasicAction, targetLevel: number): Decimal {
-  const { initial, factor, exponent } = basicAction.costFactor;
+export function getUpgradeCost(action: BasicAction, targetLevel: number): Decimal {
+  const { initial, factor, exponent } = action.costFactor;
   return initial.add(Decimal.pow(exponent, targetLevel - 1).times(factor));
 }
