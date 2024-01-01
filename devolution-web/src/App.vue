@@ -10,8 +10,6 @@ const toolboxVisible = import.meta.env.DEV;
 <template>
   <TopBanner />
   <MainContent />
+  <WelcomeModal />
   <DevelopmentToolbox v-if="toolboxVisible" />
-
-  <!-- TODO: Display the modal only on the first launch -->
-  <WelcomeModal :visible-on-load="true" />
 </template>

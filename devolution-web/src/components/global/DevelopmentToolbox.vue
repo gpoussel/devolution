@@ -16,10 +16,15 @@ function setToZero() {
 function setToOneMillion() {
   setCoins(1e9);
 }
+
+function clearSave() {
+  window.localStorage.clear();
+  window.document.location.reload();
+}
 </script>
 
 <template>
-  <footer class="text-white text-center fixed inset-x-0 bottom-0 p-2 flex gap-3 border-t-2 border-white">
+  <footer class="text-white text-center fixed z-50 inset-x-0 bottom-0 p-2 flex gap-3 border-t-2 border-white">
     <div class="text-lg font-bold">
         DEV
     </div>
@@ -36,6 +41,14 @@ function setToOneMillion() {
       class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-dark-700 hover:bg-dark-800"
     >
       1M C
+    </button>
+    <div class="flex-grow"></div>
+    <button
+      type="button"
+      @click="clearSave()"
+      class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-red-700 hover:bg-red-800"
+    >
+      🗑
     </button>
   </footer>
 </template>
