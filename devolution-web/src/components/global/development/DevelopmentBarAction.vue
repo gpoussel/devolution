@@ -7,15 +7,10 @@ withDefaults(
     type: 'default',
   },
 );
-
-function hey() {
-  alert('hey');
-}
 </script>
 <template>
   <button
     type="button"
-    @click="hey()"
     class="px-3 py-2 text-xs font-medium text-center inline-flex self-center text-white"
     :class="{
       'bg-dark-700': type === 'default',
