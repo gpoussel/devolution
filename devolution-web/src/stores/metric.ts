@@ -16,6 +16,9 @@ export const useMetricStore = defineStore('metric', {
     addCoins(value: Decimal) {
       this.coins = this.coins.add(value);
     },
+    removeCoins(value: Decimal) {
+      this.coins = this.coins.subtract(value);
+    },
     setCoins(value: Decimal) {
       this.coins = value;
     },

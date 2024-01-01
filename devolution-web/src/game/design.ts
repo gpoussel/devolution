@@ -19,7 +19,7 @@ export const BASIC_ACTIONS = [
     description: 'Working on existing features',
     coinsGainedPerSeconds: new Decimal(1),
     costFactor: {
-      initial: Decimal.fromNumber(0),
+      initial: Decimal.fromNumber(-10),
       factor: Decimal.fromNumber(10),
       exponent: Decimal.fromNumber(2.05),
     },

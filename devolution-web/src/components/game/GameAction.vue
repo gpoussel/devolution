@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Decimal from 'break_infinity.js';
+import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 
 import CoinCounter from '../utils/CoinCounter.vue';
@@ -10,40 +10,53 @@ import { useMetricStore } from '@/stores/metric';
 import { getUpgradeCost, type BasicAction } from '@/game/design';
 
 const metricStore = useMetricStore();
+const { coins } = storeToRefs(metricStore);
 const actionStore = useActionStore();
 const { purchasedActions } = storeToRefs(actionStore);
 
 const props = defineProps<{
   action: BasicAction;
 }>();
+const action = props.action;
+const { id } = action;
 
-// TODO: This shall no longer be used
+const cost = computed(() => {
+  return getUpgradeCost(action, purchasedActions.value[id] + 1);
+});
+
+const allowed = computed(() => {
+  return cost.value.lessThanOrEqualTo(coins.value);
+});
+
 function performAction() {
-  const { action } = props;
-  metricStore.addCoinsPerSecond(new Decimal(action.coinsGainedPerSeconds));
-  actionStore.increaseLevel(action);
+  if (allowed.value) {
+    metricStore.addCoinsPerSecond(action.coinsGainedPerSeconds);
+    metricStore.removeCoins(cost.value);
+    actionStore.increaseLevel(action);
+  }
 }
 </script>
 
 <template>
   <div
-    class="flex items-center col-span-1 bg-black rounded-md px-4 pt-2 pb-4 border-2 border-transparent hover:border-white hover:cursor-pointer select-none"
+    class="flex items-center col-span-1 rounded-md px-4 pt-2 pb-4 border-2 border-transparent select-none"
+    :class="{
+      'bg-black': allowed,
+      'hover:cursor-pointer': allowed,
+      'hover:border-white': allowed,
+      'bg-gray-400': !allowed,
+      'hover:cursor-not-allowed': !allowed,
+      'opacity-50': !allowed,
+    }"
     @click="performAction()"
   >
     <div class="w-8/12">
       <p class="font-bold text-xl" v-text="action.name"></p>
       <p class="text-sm" v-text="action.description"></p>
-      <p class="mt-4">
-        Current level: {{ purchasedActions[action.id] }} (<CoinPerSecondCounter
-          :value="new Decimal(0)"
-        />)
-      </p>
+      <p class="mt-4">Current level: {{ purchasedActions[id] }}</p>
       <p class="">
-        Level {{ purchasedActions[action.id] + 1 }} cost:
-        <CoinCounter
-          :value="getUpgradeCost(action, purchasedActions[action.id] + 1)"
-          class="font-bold"
-        />
+        Level {{ purchasedActions[id] + 1 }} cost:
+        <CoinCounter :value="cost" class="font-bold" />
       </p>
     </div>
     <div class="w-4/12 flex flex-row text-right">

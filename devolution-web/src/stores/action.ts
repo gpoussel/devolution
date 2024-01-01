@@ -12,4 +12,5 @@ export const useActionStore = defineStore('action', {
       this.purchasedActions[action.id] += 1;
     },
   },
+  persist: true,
 });
