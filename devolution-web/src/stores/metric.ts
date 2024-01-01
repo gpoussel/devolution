@@ -1,19 +1,17 @@
-import { computed, ref } from 'vue';
+import { ref, type Ref } from 'vue';
 import { defineStore } from 'pinia';
 import Decimal from 'break_infinity.js';
 import * as numberFormat from 'swarm-numberformat';
 
 export const useMetricStore = defineStore('metric', {
   state: () => {
-    const coins = ref(new Decimal(0));
-    const formattedCoins = computed(() => {
-      return numberFormat.formatShort(coins.value);
-    });
-    const coinsPerSecond = ref(new Decimal(0));
-    const formattedCoinsPerSecond = computed(() => {
-      return numberFormat.formatShort(coinsPerSecond.value);
-    });
-    return { coins, coinsPerSecond, formattedCoins, formattedCoinsPerSecond };
+    const coins = ref(new Decimal(0)) as Ref<Decimal>;
+    const coinsPerSecond = ref(new Decimal(0)) as Ref<Decimal>;
+    return { coins, coinsPerSecond };
+  },
+  getters: {
+    formattedCoins: (state) => numberFormat.formatShort(state.coins),
+    formattedCoinsPerSecond: (state) => numberFormat.formatShort(state.coinsPerSecond),
   },
   actions: {
     addCoins(value: Decimal) {
@@ -30,6 +28,12 @@ export const useMetricStore = defineStore('metric', {
     },
     tick() {
       this.addCoins(this.coinsPerSecond);
+    },
+  },
+  persist: {
+    afterRestore(context) {
+      context.store.coins = new Decimal(context.store.coins);
+      context.store.coinsPerSecond = new Decimal(context.store.coinsPerSecond);
     },
   },
 });

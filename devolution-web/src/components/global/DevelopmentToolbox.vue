@@ -12,6 +12,11 @@ function setCoins(value: number) {
 function setCoinsPerSecond(value: number) {
   metricStore.setCoinsPerSecond(new Decimal(value));
 }
+
+function clearSave() {
+  window.localStorage.clear();
+  window.document.location.reload();
+}
 </script>
 
 <template>
@@ -41,12 +46,20 @@ function setCoinsPerSecond(value: number) {
     >
       CPS = 0
     </button>
-     <button
+    <button
       type="button"
       @click="setCoinsPerSecond(10)"
       class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-dark-700 hover:bg-dark-800"
     >
       CPS = 10
+    </button>
+    <div class="flex-grow"></div>
+    <button
+      type="button"
+      @click="clearSave()"
+      class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-red-700 hover:bg-red-800"
+    >
+      🗑
     </button>
   </footer>
 </template>
