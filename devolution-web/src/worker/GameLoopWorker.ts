@@ -24,4 +24,4 @@ function postInitMessage() {
 }
 
 postInitMessage();
-setInterval(postTickMessage, 200);
+setInterval(postTickMessage, 1000);

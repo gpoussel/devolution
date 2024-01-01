@@ -6,26 +6,36 @@ import * as numberFormat from 'swarm-numberformat';
 export const useMetricStore = defineStore('metric', {
   state: () => {
     const coins = ref(new Decimal(0)) as Ref<Decimal>;
-    return { coins };
+    const coinsPerSecond = ref(new Decimal(0)) as Ref<Decimal>;
+    return { coins, coinsPerSecond };
   },
   getters: {
-    formattedCoins: (state) => numberFormat.formatShort(state.coins),
+    formattedCoinsPerSecond: (state) => numberFormat.formatShort(state.coinsPerSecond),
   },
   actions: {
     addCoins(value: Decimal) {
       this.coins = this.coins.add(value);
     },
+    removeCoins(value: Decimal) {
+      this.coins = this.coins.subtract(value);
+    },
     setCoins(value: Decimal) {
       this.coins = value;
     },
+    addCoinsPerSecond(value: Decimal) {
+      this.coinsPerSecond = this.coinsPerSecond.add(value);
+    },
+    setCoinsPerSecond(value: Decimal) {
+      this.coinsPerSecond = value;
+    },
     tick() {
-      // TODO: This shall obviously not be a random value
-      this.addCoins(Decimal.randomDecimalForTesting(10).abs().floor());
+      this.addCoins(this.coinsPerSecond);
     },
   },
   persist: {
     afterRestore(context) {
       context.store.coins = new Decimal(context.store.coins);
+      context.store.coinsPerSecond = new Decimal(context.store.coinsPerSecond);
     },
   },
 });

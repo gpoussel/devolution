@@ -5,6 +5,8 @@
     "esbenp.prettier-vscode",
     "stylelint.vscode-stylelint",
     "aeschli.vscode-css-formatter",
-    "Vue.volar"
+    "Vue.volar",
+    "bradlc.vscode-tailwindcss",
+    "sdras.vue-vscode-snippets"
   ]
 }
