@@ -61,5 +61,5 @@ export const BASIC_ACTIONS = [
 
 export function getUpgradeCost(action: BasicAction, targetLevel: number): Decimal {
   const { initial, factor, exponent } = action.costFactor;
-  return initial.add(Decimal.pow(exponent, targetLevel - 1).times(factor));
+  return initial.add(Decimal.pow(exponent, targetLevel - 1).times(factor)).round();
 }
