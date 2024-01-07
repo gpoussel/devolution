@@ -7,7 +7,7 @@ import CoinPerSecondCounter from '../utils/CoinPerSecondCounter.vue';
 
 import { useActionStore } from '@/stores/action';
 import { useMetricStore } from '@/stores/metric';
-import { getUpgradeCost, type BasicIncomeAction } from '@/game/design';
+import { getUpgradeCost, type IncomeAction } from '@/game/design';
 
 const metricStore = useMetricStore();
 const { coins } = storeToRefs(metricStore);
@@ -15,7 +15,7 @@ const actionStore = useActionStore();
 const { purchasedActions } = storeToRefs(actionStore);
 
 const props = defineProps<{
-  action: BasicIncomeAction;
+  action: IncomeAction;
 }>();
 const action = props.action;
 const { id } = action;

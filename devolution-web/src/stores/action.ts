@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
-import { BASIC_INCOME_ACTIONS, type BasicIncomeAction } from '@/game/design';
+import { BASIC_INCOME_ACTIONS, type IncomeAction } from '@/game/design';
 
 export const useActionStore = defineStore('action', {
   state: () => {
@@ -10,7 +10,7 @@ export const useActionStore = defineStore('action', {
     return { purchasedActions };
   },
   actions: {
-    increaseLevel(action: BasicIncomeAction) {
+    increaseLevel(action: IncomeAction) {
       this.purchasedActions[action.id] += 1;
     },
   },
