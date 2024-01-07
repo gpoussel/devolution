@@ -1,6 +1,6 @@
 {
   "name": "devolution-web",
-  "version": "0.0.0",
+  "version": "0.4.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -33,6 +33,7 @@
     "autoprefixer": "^10.4.16",
     "eslint": "^8.49.0",
     "eslint-plugin-vue": "^9.17.0",
+    "git-describe": "^4.1.1",
     "npm-run-all2": "^6.1.1",
     "postcss": "^8.4.33",
     "postcss-html": "^1.5.0",

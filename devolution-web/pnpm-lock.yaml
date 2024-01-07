@@ -58,6 +58,9 @@ devDependencies:
   eslint-plugin-vue:
     specifier: ^9.17.0
     version: 9.19.2(eslint@8.56.0)
+  git-describe:
+    specifier: ^4.1.1
+    version: 4.1.1
   npm-run-all2:
     specifier: ^6.1.1
     version: 6.1.1
@@ -1665,6 +1668,16 @@ packages:
       resolve-pkg-maps: 1.0.0
     dev: true
 
+  /git-describe@4.1.1:
+    resolution: {integrity: sha512-JC8ganO5kO80G8+XE98TDDjnMXQN3Estk3qdJuG2EGRF/l6zuMTMcN+8OSfQZ5FWpqIRLB015anWX4aSRgnxAQ==}
+    engines: {node: '>=4.0.0'}
+    dependencies:
+      '@types/semver': 7.5.6
+      lodash: 4.17.21
+    optionalDependencies:
+      semver: 5.7.2
+    dev: true
+
   /glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
     engines: {node: '>= 6'}
@@ -2520,6 +2533,13 @@ packages:
     dependencies:
       queue-microtask: 1.2.3
     dev: true
+
+  /semver@5.7.2:
+    resolution: {integrity: sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==}
+    hasBin: true
+    requiresBuild: true
+    dev: true
+    optional: true
 
   /semver@7.5.4:
     resolution: {integrity: sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==}
