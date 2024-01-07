@@ -17,6 +17,7 @@ export default {
         green: '#3ca370',
         blue: '#4da6ff',
         white: '#ffffeb',
+        red: '#b0305c',
       },
     },
   },
