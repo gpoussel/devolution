@@ -14,7 +14,7 @@ const visible = defineModel({
   type: Boolean,
 });
 
-const props = defineProps<{
+defineProps<{
   action?: ClickAction;
 }>();
 
@@ -104,12 +104,9 @@ onUnmounted(() => {
                   </div>
                   <VCodeBlock
                     class="mt-4"
-                    code-block-radius="0"
-                    :code="code"
-                    prismjs
                     :copy-button="false"
+                    :code="code"
                     :lang="element.language"
-                    theme="tomorrow"
                   />
                 </div>
               </div>

@@ -20,7 +20,9 @@ function createStoreManager() {
 
 function createSyntaxHighlighting() {
   const vueCodeBlock = createVCodeBlock({
-    // options
+    prismjs: true,
+    theme: 'tomorrow',
+    codeBlockRadius: '0',
   });
   return vueCodeBlock;
 }
