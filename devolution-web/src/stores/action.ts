@@ -1,5 +1,7 @@
 import { ref } from 'vue';
+
 import { defineStore } from 'pinia';
+
 import { BASIC_INCOME_ACTIONS, type IncomeAction } from '@/game/design';
 
 export const useActionStore = defineStore('action', {

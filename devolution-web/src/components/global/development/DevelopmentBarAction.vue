@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, getCurrentInstance, type ComponentInternalInstance } from 'vue';
+import { type ComponentInternalInstance, getCurrentInstance, onMounted, onUnmounted } from 'vue';
+
 const props = withDefaults(
   defineProps<{
     type?: 'default' | 'danger';

@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import Decimal from 'break_infinity.js';
-import { useMetricStore } from '@/stores/metric';
 import { storeToRefs } from 'pinia';
+
+import { useMetricStore } from '@/stores/metric';
 
 import CoinCounter from '../utils/CoinCounter.vue';
 import CoinPerSecondCounter from '../utils/CoinPerSecondCounter.vue';
 import DevelopmentBarAction from './development/DevelopmentBarAction.vue';
-import DevelopmentBarTitle from './development/DevelopmentBarTitle.vue';
 import DevelopmentBarText from './development/DevelopmentBarText.vue';
+import DevelopmentBarTitle from './development/DevelopmentBarTitle.vue';
 
 const metricStore = useMetricStore();
 const { coinsPerSecond } = storeToRefs(metricStore);

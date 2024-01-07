@@ -2,9 +2,9 @@
 import { storeToRefs } from 'pinia';
 
 import { PROGRESS_LEVELS } from '@/game/design';
-
 import { useLevelStore } from '@/stores/level';
 import { useMetricStore } from '@/stores/metric';
+
 import CoinPerSecondCounter from '../../utils/CoinPerSecondCounter.vue';
 
 const levelStore = useLevelStore();

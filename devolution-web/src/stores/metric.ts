@@ -1,6 +1,7 @@
 import { ref, type Ref } from 'vue';
-import { defineStore } from 'pinia';
+
 import Decimal from 'break_infinity.js';
+import { defineStore } from 'pinia';
 
 export const useMetricStore = defineStore('metric', {
   state: () => {

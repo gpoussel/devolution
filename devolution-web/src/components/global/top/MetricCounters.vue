@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import starIcon from '@/assets/icons/icons8-star-96.png';
-import hearIcon from '@/assets/icons/icons8-red-heart-96.png';
 import bugIcon from '@/assets/icons/icons8-lady-beetle-96.png';
+import hearIcon from '@/assets/icons/icons8-red-heart-96.png';
+import starIcon from '@/assets/icons/icons8-star-96.png';
+
 import MetricCoinCounter from './MetricCoinCounter.vue';
 import MetricCounter from './MetricCounter.vue';
 </script>

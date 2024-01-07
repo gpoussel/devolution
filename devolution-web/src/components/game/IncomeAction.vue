@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+
 import { storeToRefs } from 'pinia';
+
+import { getCoinsPerSecondIncrement, getUpgradeCost, type IncomeAction } from '@/game/design';
+import { useActionStore } from '@/stores/action';
+import { useMetricStore } from '@/stores/metric';
 
 import CoinCounter from '../utils/CoinCounter.vue';
 import CoinPerSecondCounter from '../utils/CoinPerSecondCounter.vue';
-
-import { useActionStore } from '@/stores/action';
-import { useMetricStore } from '@/stores/metric';
-import { getCoinsPerSecondIncrement, getUpgradeCost, type IncomeAction } from '@/game/design';
 
 const metricStore = useMetricStore();
 const { coins } = storeToRefs(metricStore);

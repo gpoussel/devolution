@@ -1,11 +1,12 @@
 import Decimal from 'break_infinity.js';
+
 import {
   BASIC_CLICK_ACTIONS,
   BASIC_INCOME_ACTIONS,
-  getUpgradeCost,
   type ClickAction,
-  type IncomeAction,
   getCoinsPerSecondIncrement,
+  getUpgradeCost,
+  type IncomeAction,
   PROGRESS_LEVELS,
 } from './design';
 

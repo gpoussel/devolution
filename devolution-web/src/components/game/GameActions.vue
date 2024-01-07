@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { BASIC_CLICK_ACTIONS, BASIC_INCOME_ACTIONS } from '@/game/design';
+
 import ClickAction from './ClickAction.vue';
 import IncomeAction from './IncomeAction.vue';
-
-import { BASIC_CLICK_ACTIONS, BASIC_INCOME_ACTIONS } from '@/game/design';
 
 const clickActions = BASIC_CLICK_ACTIONS;
 const incomeActions = BASIC_INCOME_ACTIONS;

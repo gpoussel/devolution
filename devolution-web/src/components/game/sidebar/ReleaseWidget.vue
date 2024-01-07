@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+
 import { storeToRefs } from 'pinia';
 
+import IconCheckCircle from '@/assets/svg/icon-check-circle.svg';
 import { PROGRESS_LEVELS } from '@/game/design';
-import { useMetricStore } from '@/stores/metric';
 import { useLevelStore } from '@/stores/level';
+import { useMetricStore } from '@/stores/metric';
+
 import CoinCounter from '../../utils/CoinCounter.vue';
 import CoinPerSecondCounter from '../../utils/CoinPerSecondCounter.vue';
 
@@ -13,8 +16,6 @@ const { level } = storeToRefs(levelStore);
 
 const metricStore = useMetricStore();
 const { coins, coinsPerSecond } = storeToRefs(metricStore);
-
-import IconCheckCircle from '@/assets/svg/icon-check-circle.svg';
 
 const requiredCoins = computed(() => {
   return PROGRESS_LEVELS[level.value].releaseCondition.coins;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getCurrentInstance, computed } from 'vue';
+import { computed, getCurrentInstance } from 'vue';
 
 import IconClose from '@/assets/svg/icon-close.svg';
 

@@ -1,10 +1,10 @@
 import { fileURLToPath, URL } from 'node:url';
 
+import gitDescribe from 'git-describe';
 import { defineConfig } from 'vite';
 import svgLoader from 'vite-svg-loader';
-import vue from '@vitejs/plugin-vue';
 
-import gitDescribe from 'git-describe';
+import vue from '@vitejs/plugin-vue';
 
 // https://vitejs.dev/config/
 export default defineConfig({

@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { onMounted, onUnmounted } from 'vue';
+
 import { storeToRefs } from 'pinia';
 
 import { usePlayerStore } from '@/stores/player';
+
 import ModalHeader from './ModalHeader.vue';
-import { onMounted, onUnmounted } from 'vue';
 
 const playerStore = usePlayerStore();
 const { welcomeModalDisplayed } = storeToRefs(playerStore);

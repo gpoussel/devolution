@@ -7,6 +7,7 @@
     "aeschli.vscode-css-formatter",
     "Vue.volar",
     "bradlc.vscode-tailwindcss",
-    "sdras.vue-vscode-snippets"
+    "sdras.vue-vscode-snippets",
+    "dozerg.tsimportsorter"
   ]
 }
