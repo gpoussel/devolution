@@ -11,7 +11,7 @@ export interface ClickAction {
 export const BASIC_CLICK_ACTIONS: ClickAction[] = [
   {
     id: 'basic-click-action-1',
-    name: 'Coding',
+    name: 'Prototyping',
     description: 'Start writing your first lines of code',
     minCoinsGained: Decimal.fromNumber(4),
     maxCoinsGained: Decimal.fromNumber(8),

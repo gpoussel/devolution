@@ -15,8 +15,8 @@ export interface IncomeAction {
 export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
   {
     id: 'basic-income-action-1',
-    name: 'Development',
-    description: 'Working on existing features',
+    name: 'Coding',
+    description: 'Writing code for the game',
     coinsGainedPerSeconds: new Decimal(1),
     costFactor: {
       initial: Decimal.fromNumber(0),
@@ -26,8 +26,8 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
   },
   {
     id: 'basic-income-action-2',
-    name: 'Designing',
-    description: 'Designing new features',
+    name: 'Researching',
+    description: 'Learning new technologies and techniques',
     coinsGainedPerSeconds: new Decimal(4),
     costFactor: {
       initial: Decimal.fromNumber(0),
@@ -37,7 +37,7 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
   },
   {
     id: 'basic-income-action-3',
-    name: 'Bug fixing',
+    name: 'Debugging',
     description: 'Tracking down those nasty bugs',
     coinsGainedPerSeconds: new Decimal(9),
     costFactor: {
@@ -48,8 +48,8 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
   },
   {
     id: 'basic-income-action-4',
-    name: 'Optimization',
-    description: 'Improve game performances',
+    name: 'Optimizing',
+    description: 'Improving game performance and compatibility',
     coinsGainedPerSeconds: new Decimal(20),
     costFactor: {
       initial: Decimal.fromNumber(0),
