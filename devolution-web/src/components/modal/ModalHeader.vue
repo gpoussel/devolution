@@ -13,7 +13,6 @@ withDefaults(
 defineEmits(['close']);
 
 const closeHandlerDefined = computed(() => {
-  console.log(getCurrentInstance()?.vnode);
   return getCurrentInstance()?.vnode?.props?.onClose;
 });
 </script>
