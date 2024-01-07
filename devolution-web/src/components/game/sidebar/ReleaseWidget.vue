@@ -5,6 +5,7 @@ import { storeToRefs } from 'pinia';
 
 import IconCheckCircle from '@/assets/svg/icon-check-circle.svg';
 import { PROGRESS_LEVELS } from '@/game/design';
+import { useActionStore } from '@/stores/action';
 import { useLevelStore } from '@/stores/level';
 import { useMetricStore } from '@/stores/metric';
 
@@ -16,6 +17,8 @@ const { level } = storeToRefs(levelStore);
 
 const metricStore = useMetricStore();
 const { coins, coinsPerSecond } = storeToRefs(metricStore);
+
+const actionStore = useActionStore();
 
 const requiredCoins = computed(() => {
   return PROGRESS_LEVELS[level.value].releaseCondition.coins;
@@ -38,6 +41,8 @@ const allowed = computed(() => {
 });
 
 function nextLevel() {
+  metricStore.resetAfterRelease();
+  actionStore.resetAfterRelease();
   levelStore.nextLevel();
 }
 </script>

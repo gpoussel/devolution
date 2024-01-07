@@ -28,6 +28,9 @@ export const useMetricStore = defineStore('metric', {
     tick() {
       this.addCoins(this.coinsPerSecond);
     },
+    resetAfterRelease() {
+      this.coinsPerSecond = Decimal.fromNumber(0);
+    },
   },
   persist: {
     afterRestore(context) {
