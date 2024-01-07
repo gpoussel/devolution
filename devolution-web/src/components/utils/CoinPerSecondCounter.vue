@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Decimal from 'break_infinity.js';
 import { formatDecimal } from '@/utils/formatter';
+import CoinSymbol from './CoinSymbol.vue';
 
 withDefaults(
   defineProps<{
@@ -13,6 +14,6 @@ withDefaults(
 
 <template>
   <span class="whitespace-nowrap"
-    ><template v-if="plus">+&nbsp;</template>{{ formatDecimal(value) }}&nbsp;&#8450;/s</span
+    ><template v-if="plus">+&nbsp;</template>{{ formatDecimal(value) }}<CoinSymbol />/s</span
   >
 </template>

@@ -5,6 +5,9 @@ export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
+    fontFamily: {
+      sans: ['"Tomorrow"'],
+    },
     extend: {
       // Inspired by https://lospec.com/palette-list/pear36
       colors: {
