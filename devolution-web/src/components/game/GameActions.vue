@@ -1,13 +1,18 @@
 <script setup lang="ts">
-import GameAction from './GameAction.vue';
+import ClickAction from './ClickAction.vue';
+import IncomeAction from './IncomeAction.vue';
 
-import { BASIC_ACTIONS } from '@/game/design';
+import { BASIC_CLICK_ACTIONS, BASIC_INCOME_ACTIONS } from '@/game/design';
 
-const actions = BASIC_ACTIONS;
+const clickActions = BASIC_CLICK_ACTIONS;
+const incomeActions = BASIC_INCOME_ACTIONS;
 </script>
 
 <template>
+  <div class="flex flex-col gap-3 mb-4">
+    <ClickAction v-for="action in clickActions" :key="action.id" :action="action" />
+  </div>
   <div class="grid grid-cols-2 gap-3">
-    <GameAction v-for="action in actions" :key="action.id" :action="action" />
+    <IncomeAction v-for="action in incomeActions" :key="action.id" :action="action" />
   </div>
 </template>
