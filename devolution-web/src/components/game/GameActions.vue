@@ -2,9 +2,9 @@
 import ClickAction from './ClickAction.vue';
 import GameAction from './GameAction.vue';
 
-import { BASIC_ACTIONS } from '@/game/design';
+import { BASIC_INCOME_ACTIONS } from '@/game/design';
 
-const actions = BASIC_ACTIONS;
+const actions = BASIC_INCOME_ACTIONS;
 </script>
 
 <template>

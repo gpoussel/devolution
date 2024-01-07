@@ -1,6 +1,6 @@
 import Decimal from 'break_infinity.js';
 
-export interface BasicAction {
+export interface BasicIncomeAction {
   id: string;
   name: string;
   description: string;
@@ -12,7 +12,7 @@ export interface BasicAction {
   };
 }
 
-export const BASIC_ACTIONS = [
+export const BASIC_INCOME_ACTIONS = [
   {
     id: 'basic-action-1',
     name: 'Development',
@@ -59,7 +59,7 @@ export const BASIC_ACTIONS = [
   },
 ];
 
-export function getUpgradeCost(action: BasicAction, targetLevel: number): Decimal {
+export function getUpgradeCost(action: BasicIncomeAction, targetLevel: number): Decimal {
   const { initial, factor, exponent } = action.costFactor;
   return initial.add(Decimal.pow(exponent, targetLevel - 1).times(factor));
 }
