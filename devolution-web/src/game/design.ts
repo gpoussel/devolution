@@ -37,47 +37,52 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
     description: 'Working on existing features',
     coinsGainedPerSeconds: new Decimal(1),
     costFactor: {
-      initial: Decimal.fromNumber(-10),
+      initial: Decimal.fromNumber(0),
       factor: Decimal.fromNumber(10),
-      exponent: Decimal.fromNumber(2.05),
+      exponent: Decimal.fromNumber(1.45),
     },
   },
   {
     id: 'basic-income-action-2',
     name: 'Designing',
     description: 'Designing new features',
-    coinsGainedPerSeconds: new Decimal(2),
+    coinsGainedPerSeconds: new Decimal(4),
     costFactor: {
       initial: Decimal.fromNumber(0),
-      factor: Decimal.fromNumber(500),
-      exponent: Decimal.fromNumber(1.85),
+      factor: Decimal.fromNumber(150),
+      exponent: Decimal.fromNumber(1.35),
     },
   },
   {
     id: 'basic-income-action-3',
     name: 'Bug fixing',
     description: 'Tracking down those nasty bugs',
-    coinsGainedPerSeconds: new Decimal(4),
+    coinsGainedPerSeconds: new Decimal(9),
     costFactor: {
       initial: Decimal.fromNumber(0),
-      factor: Decimal.fromNumber(11000),
-      exponent: Decimal.fromNumber(1.75),
+      factor: Decimal.fromNumber(350),
+      exponent: Decimal.fromNumber(1.4),
     },
   },
   {
     id: 'basic-income-action-4',
     name: 'Optimization',
     description: 'Improve game performances',
-    coinsGainedPerSeconds: new Decimal(8),
+    coinsGainedPerSeconds: new Decimal(20),
     costFactor: {
       initial: Decimal.fromNumber(0),
-      factor: Decimal.fromNumber(200000),
-      exponent: Decimal.fromNumber(1.65),
+      factor: Decimal.fromNumber(1750),
+      exponent: Decimal.fromNumber(1.35),
     },
   },
 ];
 
 export function getUpgradeCost(action: IncomeAction, targetLevel: number): Decimal {
   const { initial, factor, exponent } = action.costFactor;
-  return initial.add(Decimal.pow(exponent, targetLevel - 1).times(factor));
+  return initial.add(Decimal.pow(exponent, targetLevel - 1).times(factor)).floor();
+}
+
+export function getCoinsPerSecondIncrement(action: IncomeAction, targetLevel: number): Decimal {
+  const increment = Math.floor(Math.max(0, targetLevel - 1) / 5);
+  return action.coinsGainedPerSeconds.add(increment);
 }

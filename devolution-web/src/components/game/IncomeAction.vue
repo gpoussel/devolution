@@ -7,7 +7,7 @@ import CoinPerSecondCounter from '../utils/CoinPerSecondCounter.vue';
 
 import { useActionStore } from '@/stores/action';
 import { useMetricStore } from '@/stores/metric';
-import { getUpgradeCost, type IncomeAction } from '@/game/design';
+import { getCoinsPerSecondIncrement, getUpgradeCost, type IncomeAction } from '@/game/design';
 
 const metricStore = useMetricStore();
 const { coins } = storeToRefs(metricStore);
@@ -20,8 +20,16 @@ const props = defineProps<{
 const action = props.action;
 const { id } = action;
 
+const targetLevel = computed(() => {
+  return purchasedActions.value[id] + 1;
+});
+
+const coinsPerSecondIncrement = computed(() => {
+  return getCoinsPerSecondIncrement(action, targetLevel.value);
+});
+
 const cost = computed(() => {
-  return getUpgradeCost(action, purchasedActions.value[id] + 1);
+  return getUpgradeCost(action, targetLevel.value);
 });
 
 const allowed = computed(() => {
@@ -30,7 +38,7 @@ const allowed = computed(() => {
 
 function performAction() {
   if (allowed.value) {
-    metricStore.addCoinsPerSecond(action.coinsGainedPerSeconds);
+    metricStore.addCoinsPerSecond(coinsPerSecondIncrement.value);
     metricStore.removeCoins(cost.value);
     actionStore.increaseLevel(action);
   }
@@ -62,11 +70,7 @@ function performAction() {
     <div class="w-4/12 flex flex-row text-right">
       <div class="grow"></div>
       <img src="../../assets/icons/icons8-coin-96.png" class="h-6 mr-1" />
-      <CoinPerSecondCounter
-        class="self-center"
-        :plus="true"
-        :value="action.coinsGainedPerSeconds"
-      />
+      <CoinPerSecondCounter class="self-center" :plus="true" :value="coinsPerSecondIncrement" />
     </div>
   </div>
 </template>
