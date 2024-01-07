@@ -3,6 +3,7 @@ import './assets/css/main.css';
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import { createPersistedState } from 'pinia-plugin-persistedstate';
+import { createVCodeBlock } from '@wdns/vue-code-block';
 
 import App from './App.vue';
 import router from './router';
@@ -17,9 +18,17 @@ function createStoreManager() {
   return pinia;
 }
 
+function createSyntaxHighlighting() {
+  const vueCodeBlock = createVCodeBlock({
+    // options
+  });
+  return vueCodeBlock;
+}
+
 function createApplication() {
   const app = createApp(App);
   app.use(createStoreManager());
+  app.use(createSyntaxHighlighting());
   app.use(router);
   app.mount('#app');
   return app;

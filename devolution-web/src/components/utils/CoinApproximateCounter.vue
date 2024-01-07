@@ -11,7 +11,7 @@ defineProps<{
 
 <template>
   <span class="whitespace-nowrap"
-    ><template v-if="plus">+&nbsp;</template>{{ formatDecimal(minValue) }}&nbsp;&ndash;&nbsp;{{
+    ><template v-if="plus">+&nbsp;</template>{{ formatDecimal(minValue) }}-{{
       formatDecimal(maxValue)
     }}&nbsp;&#8450;</span
   >

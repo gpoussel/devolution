@@ -26,7 +26,7 @@ export const BASIC_CLICK_ACTIONS: ClickAction[] = [
     name: 'Coding',
     description: 'Start writing your first lines of code',
     minCoinsGained: Decimal.fromNumber(4),
-    maxCoinsGained: Decimal.fromNumber(6),
+    maxCoinsGained: Decimal.fromNumber(8),
   },
 ];
 
