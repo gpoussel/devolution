@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { usePlayerStore } from '@/stores/player';
 import { storeToRefs } from 'pinia';
+
+import { usePlayerStore } from '@/stores/player';
+import ModalHeader from './ModalHeader.vue';
 
 const playerStore = usePlayerStore();
 const { welcomeModalDisplayed } = storeToRefs(playerStore);
@@ -29,7 +31,7 @@ function close() {
             <div class="bg-white p-6">
               <div class="sm:flex sm:items-start">
                 <div class="mt-3 text-center sm:mt-0 sm:text-left">
-                  <h3 class="text-base font-semibold leading-6">Welcome to Devolution!</h3>
+                  <ModalHeader :can-close="false">Welcome to Devolution!</ModalHeader>
                   <div class="mt-2">
                     <p class="text-sm">
                       Devolution is an incremental game where you play as a game developer under
