@@ -1,5 +1,13 @@
 import Decimal from 'break_infinity.js';
 
+export interface ClickAction {
+  id: string;
+  name: string;
+  description: string;
+  minCoinsGained: Decimal;
+  maxCoinsGained: Decimal;
+}
+
 export interface IncomeAction {
   id: string;
   name: string;
@@ -12,9 +20,19 @@ export interface IncomeAction {
   };
 }
 
-export const BASIC_INCOME_ACTIONS = [
+export const BASIC_CLICK_ACTIONS: ClickAction[] = [
   {
-    id: 'basic-action-1',
+    id: 'basic-click-action-1',
+    name: 'Coding',
+    description: 'Start writing your first lines of code',
+    minCoinsGained: Decimal.fromNumber(4),
+    maxCoinsGained: Decimal.fromNumber(6),
+  },
+];
+
+export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
+  {
+    id: 'basic-income-action-1',
     name: 'Development',
     description: 'Working on existing features',
     coinsGainedPerSeconds: new Decimal(1),
@@ -25,7 +43,7 @@ export const BASIC_INCOME_ACTIONS = [
     },
   },
   {
-    id: 'basic-action-2',
+    id: 'basic-income-action-2',
     name: 'Designing',
     description: 'Designing new features',
     coinsGainedPerSeconds: new Decimal(2),
@@ -36,7 +54,7 @@ export const BASIC_INCOME_ACTIONS = [
     },
   },
   {
-    id: 'basic-action-3',
+    id: 'basic-income-action-3',
     name: 'Bug fixing',
     description: 'Tracking down those nasty bugs',
     coinsGainedPerSeconds: new Decimal(4),
@@ -47,7 +65,7 @@ export const BASIC_INCOME_ACTIONS = [
     },
   },
   {
-    id: 'basic-action-4',
+    id: 'basic-income-action-4',
     name: 'Optimization',
     description: 'Improve game performances',
     coinsGainedPerSeconds: new Decimal(8),
