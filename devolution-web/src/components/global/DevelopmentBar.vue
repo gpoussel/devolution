@@ -35,20 +35,22 @@ const coinPerSecondValues = [0, 10, 100, 8450];
     <DevelopmentBarTitle>DEV</DevelopmentBarTitle>
     <DevelopmentBarAction
       @click="setCoins(coinValue)"
-      v-for="coinValue of coinValues"
+      v-for="(coinValue, key) of coinValues"
       :key="coinValue"
+      :shortcut="key === coinValues.length - 1 ? '&' : undefined"
     >
       <CoinCounter :value="Decimal.fromNumber(coinValue)"></CoinCounter>
     </DevelopmentBarAction>
     <DevelopmentBarText>CPS: <CoinPerSecondCounter :value="coinsPerSecond" /></DevelopmentBarText>
     <DevelopmentBarAction
       @click="setCoinsPerSecond(coinPerSecondValue)"
-      v-for="coinPerSecondValue of coinPerSecondValues"
+      v-for="(coinPerSecondValue, key) of coinPerSecondValues"
       :key="coinPerSecondValue"
+      :shortcut="key === coinPerSecondValues.length - 1 ? 'é' : undefined"
       >CPS =&nbsp;<CoinPerSecondCounter :value="Decimal.fromNumber(coinPerSecondValue)"
     /></DevelopmentBarAction>
     <div class="flex-grow"></div>
-    <DevelopmentBarAction type="danger" @click="clearSave()">🗑️</DevelopmentBarAction>
+    <DevelopmentBarAction type="danger" @click="clearSave()" shortcut="d">🗑️</DevelopmentBarAction>
   </footer>
 </template>
 
