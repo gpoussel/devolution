@@ -117,7 +117,7 @@ onUnmounted(() => {
                 :disabled="!completed"
                 :class="{
                   'hover:bg-gray-300': completed,
-                  'hoversqdfsd:cursor-not-allowed': !completed,
+                  'hover:cursor-not-allowed': !completed,
                 }"
                 @click="done"
               >
