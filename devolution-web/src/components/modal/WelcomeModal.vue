@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { onMounted, onUnmounted } from 'vue';
+
 import { storeToRefs } from 'pinia';
 
 import { usePlayerStore } from '@/stores/player';
+
 import ModalHeader from './ModalHeader.vue';
 
 const playerStore = usePlayerStore();
@@ -10,6 +13,21 @@ const { welcomeModalDisplayed } = storeToRefs(playerStore);
 function close() {
   welcomeModalDisplayed.value = false;
 }
+
+const keyListener = (e: KeyboardEvent) => {
+  if (e.code === 'Escape') {
+    close();
+    return;
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('keydown', keyListener);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', keyListener);
+});
 </script>
 
 <template>

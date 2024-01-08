@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue';
+import type { ComponentInternalInstance } from 'vue';
+import { getCurrentInstance, onMounted, onUnmounted, ref } from 'vue';
+
+import { getRandomCodeSnippet } from '@/game/code-snippet';
+import type { ClickAction } from '@/game/design';
 import VCodeBlock from '@wdns/vue-code-block';
 
 import ModalHeader from './ModalHeader.vue';
-import type { ClickAction } from '@/game/design';
-import { getRandomCodeSnippet } from '@/game/code-snippet';
-import { ref } from 'vue';
-import { getCurrentInstance } from 'vue';
-import type { ComponentInternalInstance } from 'vue';
 
 const visible = defineModel({
   default: false,

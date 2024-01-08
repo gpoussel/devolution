@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import ApplicationLinks from './top/ApplicationLinks.vue';
 import ApplicationTitle from './top/ApplicationTitle.vue';
 import MetricCounters from './top/MetricCounters.vue';
-import ApplicationLinks from './top/ApplicationLinks.vue';
 </script>
 
 <template>

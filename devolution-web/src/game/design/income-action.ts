@@ -1,13 +1,5 @@
 import Decimal from 'break_infinity.js';
 
-export interface ClickAction {
-  id: string;
-  name: string;
-  description: string;
-  minCoinsGained: Decimal;
-  maxCoinsGained: Decimal;
-}
-
 export interface IncomeAction {
   id: string;
   name: string;
@@ -20,21 +12,11 @@ export interface IncomeAction {
   };
 }
 
-export const BASIC_CLICK_ACTIONS: ClickAction[] = [
-  {
-    id: 'basic-click-action-1',
-    name: 'Coding',
-    description: 'Start writing your first lines of code',
-    minCoinsGained: Decimal.fromNumber(4),
-    maxCoinsGained: Decimal.fromNumber(8),
-  },
-];
-
 export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
   {
     id: 'basic-income-action-1',
-    name: 'Development',
-    description: 'Working on existing features',
+    name: 'Coding',
+    description: 'Writing code for the game',
     coinsGainedPerSeconds: new Decimal(1),
     costFactor: {
       initial: Decimal.fromNumber(0),
@@ -44,8 +26,8 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
   },
   {
     id: 'basic-income-action-2',
-    name: 'Designing',
-    description: 'Designing new features',
+    name: 'Researching',
+    description: 'Learning new technologies and techniques',
     coinsGainedPerSeconds: new Decimal(4),
     costFactor: {
       initial: Decimal.fromNumber(0),
@@ -55,7 +37,7 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
   },
   {
     id: 'basic-income-action-3',
-    name: 'Bug fixing',
+    name: 'Debugging',
     description: 'Tracking down those nasty bugs',
     coinsGainedPerSeconds: new Decimal(9),
     costFactor: {
@@ -66,8 +48,8 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
   },
   {
     id: 'basic-income-action-4',
-    name: 'Optimization',
-    description: 'Improve game performances',
+    name: 'Optimizing',
+    description: 'Improving game performance and compatibility',
     coinsGainedPerSeconds: new Decimal(20),
     costFactor: {
       initial: Decimal.fromNumber(0),
@@ -77,12 +59,29 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
   },
 ];
 
-export function getUpgradeCost(action: IncomeAction, targetLevel: number): Decimal {
+export function getUpgradeCost(
+  action: IncomeAction,
+  targetActionLevel: number,
+  progressLevel: number,
+): Decimal {
   const { initial, factor, exponent } = action.costFactor;
-  return initial.add(Decimal.pow(exponent, targetLevel - 1).times(factor)).floor();
+  return initial
+    .add(
+      Decimal.pow(
+        exponent.add(Decimal.fromNumber(progressLevel * 0.1)),
+        targetActionLevel - 1,
+      ).times(factor),
+    )
+    .floor();
 }
 
-export function getCoinsPerSecondIncrement(action: IncomeAction, targetLevel: number): Decimal {
-  const increment = Math.floor(Math.max(0, targetLevel - 1) / 5);
-  return action.coinsGainedPerSeconds.add(increment);
+export function getCoinsPerSecondIncrement(
+  action: IncomeAction,
+  targetLevel: number,
+  progressLevel: number,
+): Decimal {
+  const firstLevelIncrement = Math.floor(Math.max(0, targetLevel - 1) / 5);
+  const nextLevelIncrement = Math.pow(progressLevel + firstLevelIncrement, 2) * 1.5;
+  const progressLevelIncrement = progressLevel === 0 ? firstLevelIncrement : nextLevelIncrement;
+  return action.coinsGainedPerSeconds.add(progressLevelIncrement);
 }

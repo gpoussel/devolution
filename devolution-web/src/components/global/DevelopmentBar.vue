@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import Decimal from 'break_infinity.js';
-import { useMetricStore } from '@/stores/metric';
 import { storeToRefs } from 'pinia';
+
+import { useMetricStore } from '@/stores/metric';
 
 import CoinCounter from '../utils/CoinCounter.vue';
 import CoinPerSecondCounter from '../utils/CoinPerSecondCounter.vue';
 import DevelopmentBarAction from './development/DevelopmentBarAction.vue';
-import DevelopmentBarTitle from './development/DevelopmentBarTitle.vue';
 import DevelopmentBarText from './development/DevelopmentBarText.vue';
+import DevelopmentBarTitle from './development/DevelopmentBarTitle.vue';
 
 const metricStore = useMetricStore();
 const { coinsPerSecond } = storeToRefs(metricStore);
@@ -23,6 +24,9 @@ function clearSave() {
   window.localStorage.clear();
   window.document.location.reload();
 }
+
+const coinValues = [0, 1e9];
+const coinPerSecondValues = [0, 10, 100, 8450];
 </script>
 
 <template>
@@ -30,21 +34,24 @@ function clearSave() {
     class="text-white text-center fixed z-50 inset-x-0 bottom-0 p-2 flex gap-3 border-t-2 border-white"
   >
     <DevelopmentBarTitle>DEV</DevelopmentBarTitle>
-    <DevelopmentBarAction @click="setCoins(0)">
-      <CoinCounter :value="new Decimal(0)"></CoinCounter>
+    <DevelopmentBarAction
+      @click="setCoins(coinValue)"
+      v-for="(coinValue, key) of coinValues"
+      :key="coinValue"
+      :shortcut="key === coinValues.length - 1 ? '&' : undefined"
+    >
+      <CoinCounter :value="Decimal.fromNumber(coinValue)"></CoinCounter>
     </DevelopmentBarAction>
-    <DevelopmentBarAction @click="setCoins(1e9)">
-      <CoinCounter :value="new Decimal(1e9)"></CoinCounter
-    ></DevelopmentBarAction>
     <DevelopmentBarText>CPS: <CoinPerSecondCounter :value="coinsPerSecond" /></DevelopmentBarText>
-    <DevelopmentBarAction @click="setCoinsPerSecond(0)"
-      >CPS =&nbsp;<CoinPerSecondCounter :value="new Decimal(0)"
-    /></DevelopmentBarAction>
-    <DevelopmentBarAction @click="setCoinsPerSecond(10)"
-      >CPS =&nbsp;<CoinPerSecondCounter :value="new Decimal(10)"
+    <DevelopmentBarAction
+      @click="setCoinsPerSecond(coinPerSecondValue)"
+      v-for="(coinPerSecondValue, key) of coinPerSecondValues"
+      :key="coinPerSecondValue"
+      :shortcut="key === coinPerSecondValues.length - 1 ? 'é' : undefined"
+      >CPS =&nbsp;<CoinPerSecondCounter :value="Decimal.fromNumber(coinPerSecondValue)"
     /></DevelopmentBarAction>
     <div class="flex-grow"></div>
-    <DevelopmentBarAction type="danger" @click="clearSave()">🗑️</DevelopmentBarAction>
+    <DevelopmentBarAction type="danger" @click="clearSave()" shortcut="d">🗑️</DevelopmentBarAction>
   </footer>
 </template>
 

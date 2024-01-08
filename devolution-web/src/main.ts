@@ -1,15 +1,17 @@
 import './assets/css/main.css';
 
 import { createApp } from 'vue';
+
 import { createPinia } from 'pinia';
 import { createPersistedState } from 'pinia-plugin-persistedstate';
+
 import { createVCodeBlock } from '@wdns/vue-code-block';
 
 import App from './App.vue';
 import router from './router';
+import { useMetricStore } from './stores/metric';
 import GameLoopWorker from './worker/GameLoopWorker?worker';
 import type { WorkerMessageType } from './worker/message/common';
-import { useMetricStore } from './stores/metric';
 
 function createStoreManager() {
   const pinia = createPinia();

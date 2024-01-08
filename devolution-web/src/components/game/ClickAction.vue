@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import ClickActionModal from '@/components/modal/ClickActionModal.vue';
-import CoinApproximateCounter from '../utils/CoinApproximateCounter.vue';
-import type { ClickAction } from '@/game/design';
 import Decimal from 'break_infinity.js';
+
+import ClickActionModal from '@/components/modal/ClickActionModal.vue';
+import type { ClickAction } from '@/game/design';
 import { useMetricStore } from '@/stores/metric';
+
+import CoinApproximateCounter from '../utils/CoinApproximateCounter.vue';
 
 const props = defineProps<{
   action: ClickAction;

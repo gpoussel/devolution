@@ -2,8 +2,9 @@
 import { storeToRefs } from 'pinia';
 
 import coinIcon from '@/assets/icons/icons8-coin-96.png';
-import CoinCounter from '../../utils/CoinCounter.vue';
 import { useMetricStore } from '@/stores/metric';
+
+import CoinCounter from '../../utils/CoinCounter.vue';
 
 const metricStore = useMetricStore();
 const { coins } = storeToRefs(metricStore);
