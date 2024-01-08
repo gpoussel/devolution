@@ -59,12 +59,29 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
   },
 ];
 
-export function getUpgradeCost(action: IncomeAction, targetLevel: number): Decimal {
+export function getUpgradeCost(
+  action: IncomeAction,
+  targetActionLevel: number,
+  progressLevel: number,
+): Decimal {
   const { initial, factor, exponent } = action.costFactor;
-  return initial.add(Decimal.pow(exponent, targetLevel - 1).times(factor)).floor();
+  return initial
+    .add(
+      Decimal.pow(
+        exponent.add(Decimal.fromNumber(progressLevel * 0.1)),
+        targetActionLevel - 1,
+      ).times(factor),
+    )
+    .floor();
 }
 
-export function getCoinsPerSecondIncrement(action: IncomeAction, targetLevel: number): Decimal {
-  const increment = Math.floor(Math.max(0, targetLevel - 1) / 5);
-  return action.coinsGainedPerSeconds.add(increment);
+export function getCoinsPerSecondIncrement(
+  action: IncomeAction,
+  targetLevel: number,
+  progressLevel: number,
+): Decimal {
+  const firstLevelIncrement = Math.floor(Math.max(0, targetLevel - 1) / 5);
+  const nextLevelIncrement = Math.pow(progressLevel + firstLevelIncrement, 2) * 1.5;
+  const progressLevelIncrement = progressLevel === 0 ? firstLevelIncrement : nextLevelIncrement;
+  return action.coinsGainedPerSeconds.add(progressLevelIncrement);
 }

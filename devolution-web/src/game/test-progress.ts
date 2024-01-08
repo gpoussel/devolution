@@ -21,7 +21,7 @@ type UserOperationType =
       coinsPerSecond: Decimal;
     };
 
-function getUserOperationsAtLevel(level: number) {
+function getUserOperationsAtLevel(progressLevel: number) {
   const userOperations: UserOperationType[] = [];
   let coinsPerSecond = Decimal.fromNumber(0);
   const incomeActionLevels: { [name: string]: number } = {};
@@ -33,12 +33,16 @@ function getUserOperationsAtLevel(level: number) {
 
   function upgrade(action: IncomeAction) {
     if (coinsPerSecond.greaterThan(0)) {
-      const time = getUpgradeCost(action, getLevel(action) + 1).divideBy(coinsPerSecond);
+      const time = getUpgradeCost(action, getLevel(action) + 1, progressLevel).divideBy(
+        coinsPerSecond,
+      );
       if (time.greaterThan(0)) {
         userOperations.push({ type: 'Wait', time: time.toNumber() });
       }
     }
-    coinsPerSecond = coinsPerSecond.add(getCoinsPerSecondIncrement(action, getLevel(action) + 1));
+    coinsPerSecond = coinsPerSecond.add(
+      getCoinsPerSecondIncrement(action, getLevel(action) + 1, progressLevel),
+    );
     incomeActionLevels[action.id]++;
     userOperations.push({
       type: 'IncomeActionUpgrade',
@@ -51,8 +55,8 @@ function getUserOperationsAtLevel(level: number) {
   function getMostEfficientUpgrade() {
     return BASIC_INCOME_ACTIONS.map((action) => ({
       action,
-      efficiency: getUpgradeCost(action, getLevel(action) + 1).divideBy(
-        getCoinsPerSecondIncrement(action, getLevel(action)),
+      efficiency: getUpgradeCost(action, getLevel(action) + 1, progressLevel).divideBy(
+        getCoinsPerSecondIncrement(action, getLevel(action), progressLevel),
       ),
     })).reduce((r, e) => (r.efficiency.lessThanOrEqualTo(e.efficiency) ? r : e)).action;
   }
@@ -64,7 +68,7 @@ function getUserOperationsAtLevel(level: number) {
       const clickAction = BASIC_CLICK_ACTIONS[0];
 
       // Check the cheapest income operation
-      const amountToReach = getUpgradeCost(BASIC_INCOME_ACTIONS[0], 1);
+      const amountToReach = getUpgradeCost(BASIC_INCOME_ACTIONS[0], 1, progressLevel);
       const numberOfClickActions = amountToReach.divideBy(clickAction.minCoinsGained).ceil();
       for (let i = 0; i < numberOfClickActions.toNumber(); ++i) {
         userOperations.push({
@@ -82,16 +86,16 @@ function getUserOperationsAtLevel(level: number) {
     const action = getMostEfficientUpgrade();
     upgrade(action);
 
-    const currentProgressLevel = PROGRESS_LEVELS[level];
+    const currentProgressLevel = PROGRESS_LEVELS[progressLevel];
     if (coinsPerSecond.greaterThanOrEqualTo(currentProgressLevel.releaseCondition.coinsPerSecond)) {
       const timeToGainCoins = currentProgressLevel.releaseCondition.coins.divideBy(coinsPerSecond);
       userOperations.push({
         type: 'Wait',
-        time: 10,
+        time: timeToGainCoins.toNumber(),
       });
       userOperations.push({
         type: 'Release',
-        level,
+        level: progressLevel,
       });
       break;
     }
@@ -117,7 +121,7 @@ for (let level = 0; level < PROGRESS_LEVELS.length; ++level) {
   let totalTime = 0;
   let lastIncomeAction: string = '';
   let lastReleaseAction: string = '';
-  for (const userOperation of getUserOperationsAtLevel(0)) {
+  for (const userOperation of getUserOperationsAtLevel(level)) {
     if (userOperation.type === 'Wait') {
       totalTime += userOperation.time;
     } else if (userOperation.type === 'IncomeActionUpgrade') {

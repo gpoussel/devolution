@@ -3,8 +3,13 @@ import { computed } from 'vue';
 
 import { storeToRefs } from 'pinia';
 
-import { getCoinsPerSecondIncrement, getUpgradeCost, type IncomeAction } from '@/game/design';
+import {
+  getCoinsPerSecondIncrement,
+  getUpgradeCost,
+  type IncomeAction,
+} from '@/game/design';
 import { useActionStore } from '@/stores/action';
+import { useLevelStore } from '@/stores/level';
 import { useMetricStore } from '@/stores/metric';
 
 import CoinCounter from '../utils/CoinCounter.vue';
@@ -14,6 +19,8 @@ const metricStore = useMetricStore();
 const { coins } = storeToRefs(metricStore);
 const actionStore = useActionStore();
 const { purchasedActions } = storeToRefs(actionStore);
+const levelStore = useLevelStore();
+const { level } = storeToRefs(levelStore);
 
 const props = defineProps<{
   action: IncomeAction;
@@ -26,11 +33,11 @@ const targetLevel = computed(() => {
 });
 
 const coinsPerSecondIncrement = computed(() => {
-  return getCoinsPerSecondIncrement(action, targetLevel.value);
+  return getCoinsPerSecondIncrement(action, targetLevel.value, level.value);
 });
 
 const cost = computed(() => {
-  return getUpgradeCost(action, targetLevel.value);
+  return getUpgradeCost(action, targetLevel.value, level.value);
 });
 
 const allowed = computed(() => {
