@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, getCurrentInstance } from 'vue';
+import { type ComponentInternalInstance, computed, getCurrentInstance } from 'vue';
 
 import IconClose from '@/assets/svg/icon-close.svg';
 
@@ -13,8 +13,9 @@ withDefaults(
 );
 defineEmits(['close']);
 
+const currentInstance = getCurrentInstance() as ComponentInternalInstance;
 const closeHandlerDefined = computed(() => {
-  return getCurrentInstance()?.vnode?.props?.onClose;
+  return currentInstance.vnode?.props?.onClose;
 });
 </script>
 <template>

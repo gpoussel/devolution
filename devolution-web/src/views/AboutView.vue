@@ -1,39 +1,20 @@
 <script setup lang="ts">
-import IconGithub from '@/assets/svg/icon-github.svg';
-
-const version = __APP_VERSION__;
-const commit = __APP_COMMIT__;
+import AboutGameAuthor from '@/components/about/AboutGameAuthor.vue';
+import AboutGameDescription from '@/components/about/AboutGameDescription.vue';
+import AboutLicensingDetails from '@/components/about/AboutLicensingDetails.vue';
 </script>
 
 <template>
-  <div>
-    <h1 class="text-2xl font-semibold">About</h1>
-    <p>
-      This game was developped in January 2024, for the
-      <a class="text-blue hover:text-blue-200" href="https://itch.io/jam/nyigj-2024"
-        >New Year Incremental Game Jam (NYIGJ) 2024</a
-      >.
-    </p>
-    <p>
-      Application version: <strong>{{ version }}</strong> ({{ commit }})
-    </p>
-    <h2 class="text-lg font-semibold mt-4">Author</h2>
-    <p>
-      Guillaume Poussel (source code available on
-      <a class="text-blue hover:text-blue-200" href="https://github.com/gpoussel/devolution">
-        <IconGithub class="inline text-inherit w-4 -mt-2 ml-1" /> GitHub</a
-      >)
-    </p>
-    <h2 class="text-lg font-semibold mt-4">Credits</h2>
-    <ul class="list-disc">
-      <li>
-        Status icons (coin, star, read heart and bug) are provided by
-        <a class="text-blue hover:text-blue-200" href="https://icons8.com/">Icons8</a>.
-      </li>
-      <li>
-        Application icons are provided by
-        <a class="text-blue hover:text-blue-200" href="https://flowbite.com/icons/">Flowbite</a>.
-      </li>
-    </ul>
+  <div class="flex flex-col">
+    <div class="flex">
+      <h1 class="text-2xl font-semibold mb-4">About</h1>
+    </div>
+    <div class="flex flex-row">
+      <div class="w-1/2">
+        <AboutGameDescription />
+        <AboutGameAuthor />
+      </div>
+      <AboutLicensingDetails />
+    </div>
   </div>
 </template>
