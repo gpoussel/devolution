@@ -4,9 +4,12 @@ import { onMounted, onUnmounted, ref } from 'vue';
 import IconTrashBin from '@/assets/svg/icon-trash-bin.svg';
 import SettingsProgressModal from '@/components/modal/SettingsProgressModal.vue';
 import AppButton from '@/components/utils/AppButton.vue';
+import { useTechnicalStore } from '@/stores/technical';
 
 const loadModalVisible = ref(false);
 const saveModalVisible = ref(false);
+
+const technicalStore = useTechnicalStore();
 
 function getSaveData() {
   return btoa(JSON.stringify(localStorage));
@@ -19,6 +22,10 @@ function loadCompleted(argument: string | undefined) {
 
 function saveCompleted() {
   saveModalVisible.value = false;
+}
+
+function clearSave() {
+  technicalStore.clearSave();
 }
 
 let saveData = ref('');
@@ -43,7 +50,7 @@ onUnmounted(() => {
     <div class="flex flex-row items-start mt-4">
       <AppButton @click="loadModalVisible = true">Load</AppButton>
       <AppButton @click="saveModalVisible = true">Save</AppButton>
-      <AppButton type="danger" class="flex items-center"
+      <AppButton type="danger" class="flex items-center" @click="clearSave"
         ><IconTrashBin class="text-inherit w-3 mr-2" /> Hard Reset</AppButton
       >
       <SettingsProgressModal
