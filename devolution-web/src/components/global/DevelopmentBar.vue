@@ -3,6 +3,7 @@ import Decimal from 'break_infinity.js';
 import { storeToRefs } from 'pinia';
 
 import { useMetricStore } from '@/stores/metric';
+import { useTechnicalStore } from '@/stores/technical';
 
 import CoinCounter from '../utils/CoinCounter.vue';
 import CoinPerSecondCounter from '../utils/CoinPerSecondCounter.vue';
@@ -13,6 +14,9 @@ import DevelopmentBarTitle from './development/DevelopmentBarTitle.vue';
 const metricStore = useMetricStore();
 const { coinsPerSecond } = storeToRefs(metricStore);
 
+const technicalStore = useTechnicalStore();
+const { ticking } = storeToRefs(technicalStore);
+
 function setCoins(value: number) {
   metricStore.setCoins(new Decimal(value));
 }
@@ -21,8 +25,7 @@ function setCoinsPerSecond(value: number) {
 }
 
 function clearSave() {
-  window.localStorage.clear();
-  window.document.location.reload();
+  technicalStore.clearSave();
 }
 
 const coinValues = [0, 1e9];
@@ -33,7 +36,23 @@ const coinPerSecondValues = [0, 10, 100, 8450];
   <footer
     class="text-white text-center fixed z-50 inset-x-0 bottom-0 p-2 flex gap-3 border-t-2 border-white"
   >
-    <DevelopmentBarTitle>DEV</DevelopmentBarTitle>
+    <DevelopmentBarTitle class="flex items-center"
+      >DEV
+      <span class="relative flex h-3 w-3 ml-2">
+        <span
+          class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"
+          v-if="ticking"
+        ></span>
+        <span
+          class="relative inline-flex rounded-full h-3 w-3"
+          :class="{
+            'bg-red-500': !ticking,
+            'bg-white': ticking,
+          }"
+        ></span>
+      </span>
+      <span class="flex ml-1 w-2 h-2 rounded-full"></span
+    ></DevelopmentBarTitle>
     <DevelopmentBarAction
       @click="setCoins(coinValue)"
       v-for="(coinValue, key) of coinValues"

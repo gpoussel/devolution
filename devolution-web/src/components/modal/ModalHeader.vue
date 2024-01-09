@@ -23,7 +23,7 @@ const closeHandlerDefined = computed(() => {
     <h3 class="text-base font-semibold leading-6"><slot /></h3>
     <button
       type="button"
-      class="text-gray-400 hover:text-gray-900 rounded-lg text-sm p-2 ms-auto inline-flex justify-center items-center"
+      class="text-gray-400 hover:text-gray-800 rounded-lg text-sm p-2 ms-auto inline-flex justify-center items-center"
       v-if="closeHandlerDefined"
       @click="$emit('close')"
     >

@@ -10,7 +10,7 @@ const metricStore = useMetricStore();
 const { coins } = storeToRefs(metricStore);
 </script>
 <template>
-  <div class="flex w-20">
+  <div class="flex w-32">
     <img :src="coinIcon" class="h-7 mr-1" />
     <CoinCounter :value="coins" class="self-center" />
   </div>

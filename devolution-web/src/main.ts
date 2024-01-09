@@ -2,7 +2,7 @@ import './assets/css/main.css';
 
 import { createApp } from 'vue';
 
-import { createPinia } from 'pinia';
+import { createPinia, storeToRefs } from 'pinia';
 import { createPersistedState } from 'pinia-plugin-persistedstate';
 
 import { createVCodeBlock } from '@wdns/vue-code-block';
@@ -10,6 +10,7 @@ import { createVCodeBlock } from '@wdns/vue-code-block';
 import App from './App.vue';
 import router from './router';
 import { useMetricStore } from './stores/metric';
+import { useTechnicalStore } from './stores/technical';
 import GameLoopWorker from './worker/GameLoopWorker?worker';
 import type { WorkerMessageType } from './worker/message/common';
 
@@ -40,10 +41,13 @@ function createApplication() {
 
 createApplication();
 
-const metric = useMetricStore();
+const metricStore = useMetricStore();
+const technicalStore = useTechnicalStore();
+const { ticking } = storeToRefs(technicalStore);
+
 function tick() {
   console.debug(`${new Date().getTime()} - tick()`);
-  metric.tick();
+  metricStore.tick();
 }
 
 const worker = new GameLoopWorker();
@@ -52,9 +56,12 @@ worker.addEventListener('message', (messageEvent: MessageEvent): void => {
   if (typeof data === 'object') {
     const workerMessage = data as WorkerMessageType;
     if (workerMessage.type === 'TickMessage') {
-      tick();
+      if (ticking.value) {
+        tick();
+      }
     } else if (workerMessage.type === 'InitMessage') {
       console.debug('Web worker initialized');
+      ticking.value = true;
     }
   }
 });

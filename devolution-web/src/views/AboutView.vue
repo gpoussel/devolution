@@ -5,7 +5,7 @@ import AboutLicensingDetails from '@/components/about/AboutLicensingDetails.vue'
 </script>
 
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col w-full items-stretch">
     <div class="flex">
       <h1 class="text-2xl font-semibold mb-4">About</h1>
     </div>
