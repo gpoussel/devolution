@@ -11,13 +11,11 @@ const saveModalVisible = ref(false);
 
 const technicalStore = useTechnicalStore();
 
-function getSaveData() {
-  return btoa(JSON.stringify(localStorage));
-}
-
 function loadCompleted(argument: string | undefined) {
   loadModalVisible.value = false;
-  console.log(argument);
+  if (argument) {
+    technicalStore.loadSave(argument);
+  }
 }
 
 function saveCompleted() {
@@ -32,7 +30,7 @@ let saveData = ref('');
 let interval = 0;
 onMounted(() => {
   interval = setInterval(() => {
-    saveData.value = getSaveData();
+    saveData.value = technicalStore.getSaveData();
   }, 5);
 });
 
