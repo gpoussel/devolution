@@ -2,6 +2,8 @@ import { ref } from 'vue';
 
 import { defineStore } from 'pinia';
 
+import router from '@/router';
+
 export const useTechnicalStore = defineStore('technical', {
   state: () => {
     const ticking = ref(false);
@@ -16,7 +18,7 @@ export const useTechnicalStore = defineStore('technical', {
         for (const [storeName, storeContentJson] of Object.entries(savedStores)) {
           window.localStorage.setItem(storeName, storeContentJson as string);
         }
-        window.document.location.reload();
+        this.reloadAndBackToHome();
       } catch (_error) {
         window.alert(_error as string);
         this.ticking = true;
@@ -28,7 +30,11 @@ export const useTechnicalStore = defineStore('technical', {
     clearSave() {
       this.ticking = false;
       window.localStorage.clear();
-      window.document.location.reload();
+      this.reloadAndBackToHome();
+    },
+    reloadAndBackToHome() {
+      const basePath = router.options.history.base;
+      window.document.location.assign(basePath + (basePath.endsWith('/') ? '' : '/'));
     },
   },
 });
