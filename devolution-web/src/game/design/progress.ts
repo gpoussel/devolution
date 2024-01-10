@@ -26,29 +26,29 @@ export const PROGRESS_LEVELS: ProgressLevel[] = [
   {
     name: 'Medium Studio',
     releaseCondition: {
-      coins: Decimal.fromNumber(12000),
-      coinsPerSecond: Decimal.fromNumber(1200),
+      coins: Decimal.fromNumber(15000),
+      coinsPerSecond: Decimal.fromNumber(1500),
     },
   },
   {
     name: 'Large Studio',
-    releaseCondition: {
-      coins: Decimal.fromNumber(19000),
-      coinsPerSecond: Decimal.fromNumber(1900),
-    },
-  },
-  {
-    name: 'AAA Studio',
     releaseCondition: {
       coins: Decimal.fromNumber(25000),
       coinsPerSecond: Decimal.fromNumber(2500),
     },
   },
   {
+    name: 'AAA Studio',
+    releaseCondition: {
+      coins: Decimal.fromNumber(38000),
+      coinsPerSecond: Decimal.fromNumber(3800),
+    },
+  },
+  {
     name: 'Game Industry Leader',
     releaseCondition: {
-      coins: Decimal.fromNumber(50000),
-      coinsPerSecond: Decimal.fromNumber(4000),
+      coins: Decimal.fromNumber(60000),
+      coinsPerSecond: Decimal.fromNumber(6000),
     },
   },
 ];

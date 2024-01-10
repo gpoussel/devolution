@@ -1,11 +1,22 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
+import { storeToRefs } from 'pinia';
+
 import { BASIC_CLICK_ACTIONS, BASIC_INCOME_ACTIONS } from '@/game/design';
+import { useLevelStore } from '@/stores/level';
 
 import ClickAction from './ClickAction.vue';
 import IncomeAction from './IncomeAction.vue';
 
+const levelStore = useLevelStore();
+const { level } = storeToRefs(levelStore);
+
 const clickActions = BASIC_CLICK_ACTIONS;
-const incomeActions = BASIC_INCOME_ACTIONS;
+
+const incomeActions = computed(() => {
+  return BASIC_INCOME_ACTIONS.filter((action) => level.value >= action.minLevel);
+});
 </script>
 
 <template>
