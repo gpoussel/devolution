@@ -12,7 +12,8 @@ import DevelopmentBarText from './development/DevelopmentBarText.vue';
 import DevelopmentBarTitle from './development/DevelopmentBarTitle.vue';
 
 const metricStore = useMetricStore();
-const { coinsPerSecond } = storeToRefs(metricStore);
+const { coinsPerSecond, chancesOfIncreasingHealth, chancesOfDecreasingHealth } =
+  storeToRefs(metricStore);
 
 const technicalStore = useTechnicalStore();
 const { ticking } = storeToRefs(technicalStore);
@@ -22,6 +23,10 @@ function setCoins(value: number) {
 }
 function setCoinsPerSecond(value: number) {
   metricStore.setCoinsPerSecond(new Decimal(value));
+}
+function setHealthChances(increasingChances: number, decreasingChances: number) {
+  chancesOfIncreasingHealth.value = increasingChances;
+  chancesOfDecreasingHealth.value = decreasingChances;
 }
 
 function clearSave() {
@@ -69,6 +74,9 @@ const coinPerSecondValues = [0, 10, 100, 8450];
       :shortcut="key === coinPerSecondValues.length - 1 ? 'é' : undefined"
       >CPS =&nbsp;<CoinPerSecondCounter :value="Decimal.fromNumber(coinPerSecondValue)"
     /></DevelopmentBarAction>
+    <DevelopmentBarAction @click="setHealthChances(100, 0)">♥ ↑</DevelopmentBarAction>
+    <DevelopmentBarAction @click="setHealthChances(0, 0)">♥ →</DevelopmentBarAction>
+    <DevelopmentBarAction @click="setHealthChances(0, 100)">♥ ↓</DevelopmentBarAction>
     <div class="flex-grow"></div>
     <DevelopmentBarAction type="danger" @click="clearSave()" shortcut="d">🗑️</DevelopmentBarAction>
   </footer>

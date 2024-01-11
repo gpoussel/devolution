@@ -47,7 +47,10 @@ const { ticking } = storeToRefs(technicalStore);
 
 function tick() {
   console.debug(`${new Date().getTime()} - tick()`);
-  metricStore.tick();
+  metricStore.tickCoins();
+  metricStore.tickPopularity();
+  metricStore.tickHealth();
+  metricStore.tickBugs();
 }
 
 const worker = new GameLoopWorker();
