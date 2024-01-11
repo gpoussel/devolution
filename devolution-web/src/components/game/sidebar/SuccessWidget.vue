@@ -3,7 +3,7 @@ import { onMounted } from 'vue';
 
 import confetti from 'canvas-confetti';
 
-import { randomInRange } from '@/utils/random';
+import { randomDoubleInRange } from '@/utils/random';
 
 onMounted(() => {
   const duration = 15_000;
@@ -22,12 +22,12 @@ onMounted(() => {
     confetti({
       ...defaults,
       particleCount,
-      origin: { x: randomInRange(0.1, 0.6), y: randomInRange(-0.2, 0.8) },
+      origin: { x: randomDoubleInRange(0.1, 0.6), y: randomDoubleInRange(-0.2, 0.8) },
     });
     confetti({
       ...defaults,
       particleCount,
-      origin: { x: randomInRange(0.4, 0.9), y: randomInRange(-0.2, 0.8) },
+      origin: { x: randomDoubleInRange(0.4, 0.9), y: randomDoubleInRange(-0.2, 0.8) },
     });
   }, 300);
 });
