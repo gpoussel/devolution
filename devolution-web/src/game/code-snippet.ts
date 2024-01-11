@@ -1,3 +1,5 @@
+import { randomElement } from '@/utils/random';
+
 export interface CodeSnippet {
   source: string;
   code: string;
@@ -47,10 +49,6 @@ const CODE_SAMPLES: CodeSnippet[] = [
   },
 ];
 
-function getRandomElement<T>(arr: T[]): T {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
 export function getRandomCodeSnippet(): CodeSnippet {
-  return getRandomElement(CODE_SAMPLES);
+  return randomElement(CODE_SAMPLES);
 }

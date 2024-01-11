@@ -6,6 +6,7 @@ import Decimal from 'break_infinity.js';
 import ClickActionModal from '@/components/modal/ClickActionModal.vue';
 import type { ClickAction } from '@/game/design';
 import { useMetricStore } from '@/stores/metric';
+import { randomIntegerInRange } from '@/utils/random';
 
 import CoinApproximateCounter from '../utils/CoinApproximateCounter.vue';
 
@@ -21,7 +22,7 @@ const metricStore = useMetricStore();
 function getRandomCoins() {
   const minCoinsGained = action.minCoinsGained.toNumber();
   const maxCoinsGained = action.maxCoinsGained.toNumber();
-  return Math.floor(Math.random() * (maxCoinsGained - minCoinsGained + 1) + minCoinsGained);
+  return randomIntegerInRange(minCoinsGained, maxCoinsGained);
 }
 
 function startAction() {
