@@ -19,3 +19,12 @@ Devolution is made available under the Apache License, version 2.0. Some assets 
 
 - Status icons (coin, star, read heart and bug) are provided by [Icons8](https://icons8.com/).
 - Application icons are provided by [Flowbite](https://flowbite.com/icons/).
+
+## Publishing on itch.io
+
+In order to publish this game, execute the following commands:
+
+```bash
+pnpm build
+butler push dist-zip\dist.zip gpoussel/devolution:html
+```
