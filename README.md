@@ -2,7 +2,7 @@
 
 Devolution, an incremental game created for [New Year's Incremental Game Jam 2024](https://itch.io/jam/nyigj-2024). This game was entirely created within two weeks (from December 30th 2023 to January 13th 2024).
 
-Devolution is an **incremental gamm** in which you play the role of an independent game developer trying to make a name for himself in a difficult environment. Make the right choices and work your way to the top!
+Devolution is an **incremental game** in which you play the role of an independent game developer trying to make a name for himself in a difficult environment. Make the right choices and work your way to the top!
 
 Game is available:
 
