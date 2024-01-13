@@ -7,7 +7,7 @@ Devolution is an **incremental gamm** in which you play the role of an independe
 Game is available:
 
 - On [GitHub](https://gpoussel.github.io/devolution/)
-- On itch.io: SOON!
+- On [itch.io](https://gpoussel.itch.io/devolution/)
 
 ## Coding
 
