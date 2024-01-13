@@ -1,4 +1,7 @@
-import { fileURLToPath, URL } from 'node:url';
+import {
+  fileURLToPath,
+  URL,
+} from 'node:url';
 
 import gitDescribe from 'git-describe';
 import { defineConfig } from 'vite';
@@ -8,7 +11,7 @@ import vue from '@vitejs/plugin-vue';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/devolution/',
+  base: './',
   plugins: [
     vue(),
     svgLoader({
