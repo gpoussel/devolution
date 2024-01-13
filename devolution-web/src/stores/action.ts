@@ -30,12 +30,20 @@ export const useActionStore = defineStore('action', {
         this.purchasedActions[action.id] = 0;
       }
     },
-    tickPerks() {
+    tickPerks(): { disabledPerks: Perk[] } {
+      const disabledPerks: Perk[] = [];
       for (const [key, value] of Object.entries(this.activePerks)) {
         if (value > 0) {
           this.activePerks[key]--;
+          if (this.activePerks[key] === 0) {
+            const disabledPerk = PERKS.find((perk) => perk.id === key);
+            if (disabledPerk) {
+              disabledPerks.push(disabledPerk);
+            }
+          }
         }
       }
+      return { disabledPerks };
     },
   },
   persist: true,

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
+import Decimal from 'break_infinity.js';
 import { storeToRefs } from 'pinia';
 
 import IconHourglass from '@/assets/svg/icon-hourglass.svg';
@@ -40,8 +41,15 @@ const remainingTime = computed(() => {
 
 function performAction() {
   if (state.value === 'allowed') {
-    console.log('Performing: ', perk);
-    metricStore.removeCoins(perk.cost);
+    const { temporaryEffect, permanentEffect, cost } = perk;
+    metricStore.removeCoins(cost);
+    metricStore.bugsBurst += temporaryEffect.bugsImpact ?? 0;
+    metricStore.healthBurst += temporaryEffect.healthImpact ?? 0;
+    metricStore.popularityBurst += temporaryEffect.popularityImpact ?? 0;
+    metricStore.addCoinsPerSecond(Decimal.fromNumber(temporaryEffect.coinsPerSecond ?? 0));
+    metricStore.updatePopularity(permanentEffect.popularity ?? 0);
+    metricStore.updateHealth(permanentEffect.health ?? 0);
+    metricStore.updateBugs(permanentEffect.bugs ?? 0);
     actionStore.activatePerk(perk);
   }
 }

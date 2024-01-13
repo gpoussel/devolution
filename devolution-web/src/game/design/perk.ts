@@ -25,7 +25,7 @@ export const PERKS: Perk[] = [
     name: 'Coffee Break',
     description:
       'Boosts your productivity and income for a short time, but lowers your health slightly.',
-    cost: Decimal.fromNumber(1000),
+    cost: Decimal.fromNumber(30),
     duration: 15,
     temporaryEffect: {
       coinsPerSecond: 3,
@@ -121,7 +121,7 @@ export const PERKS: Perk[] = [
     duration: 300,
     temporaryEffect: {
       coinsPerSecond: -5,
-      bugsImpact: -200,
+      bugsImpact: -300,
     },
     permanentEffect: {},
   },
