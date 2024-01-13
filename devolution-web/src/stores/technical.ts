@@ -35,6 +35,7 @@ export const useTechnicalStore = defineStore('technical', {
     reloadAndBackToHome() {
       const basePath = router.options.history.base;
       window.document.location.assign(basePath + (basePath.endsWith('/') ? '' : '/'));
+      window.document.location.reload();
     },
   },
 });
