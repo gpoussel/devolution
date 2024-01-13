@@ -7,8 +7,8 @@ import { clamp } from '@/utils/number';
 import { randomIntegerInRange } from '@/utils/random';
 
 function computeIncrement(increasingChances: number, decreasingChances: number): number {
-  const increasingNumber = randomIntegerInRange(0, increasingChances);
-  const decreasingNumber = randomIntegerInRange(0, decreasingChances);
+  const increasingNumber = randomIntegerInRange(0, 500);
+  const decreasingNumber = randomIntegerInRange(0, 500);
 
   return (
     (increasingNumber < increasingChances ? 1 : 0) - (decreasingNumber < decreasingChances ? 1 : 0)
@@ -67,16 +67,45 @@ export const useMetricStore = defineStore('metric', {
         computeIncrement(this.chancesOfIncreasingPopularity, this.chancesOfDecreasingPopularity);
       this.popularity = clamp(newPopularity, 0, 100);
     },
+    addImpactOnPopularity(impact: number) {
+      if (impact > 0) {
+        this.chancesOfIncreasingPopularity = clamp(
+          this.chancesOfIncreasingPopularity + impact,
+          0,
+          100,
+        );
+      } else {
+        this.chancesOfDecreasingPopularity = clamp(
+          this.chancesOfDecreasingPopularity + impact,
+          0,
+          100,
+        );
+      }
+    },
     tickHealth() {
       const newHealth =
         this.health +
         computeIncrement(this.chancesOfIncreasingHealth, this.chancesOfDecreasingHealth);
       this.health = clamp(newHealth, 0, 100);
     },
+    addImpactOnHealth(impact: number) {
+      if (impact > 0) {
+        this.chancesOfIncreasingHealth = clamp(this.chancesOfIncreasingHealth + impact, 0, 100);
+      } else {
+        this.chancesOfDecreasingHealth = clamp(this.chancesOfDecreasingHealth - impact, 0, 100);
+      }
+    },
     tickBugs() {
       const newBugs =
         this.bugs + computeIncrement(this.chancesOfIncreasingBugs, this.chancesOfDecreasingBugs);
       this.bugs = clamp(newBugs, 0, 1000);
+    },
+    addImpactOnBugs(impact: number) {
+      if (impact > 0) {
+        this.chancesOfIncreasingBugs = clamp(this.chancesOfIncreasingBugs + impact, 0, 100);
+      } else {
+        this.chancesOfDecreasingBugs = clamp(this.chancesOfDecreasingBugs - impact, 0, 100);
+      }
     },
     resetAfterRelease() {
       this.coinsPerSecond = Decimal.fromNumber(0);
