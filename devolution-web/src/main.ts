@@ -9,6 +9,7 @@ import { createVCodeBlock } from '@wdns/vue-code-block';
 
 import App from './App.vue';
 import router from './router';
+import { useActionStore } from './stores/action';
 import { useMetricStore } from './stores/metric';
 import { useTechnicalStore } from './stores/technical';
 import GameLoopWorker from './worker/GameLoopWorker?worker';
@@ -42,6 +43,7 @@ function createApplication() {
 createApplication();
 
 const metricStore = useMetricStore();
+const actionStore = useActionStore();
 const technicalStore = useTechnicalStore();
 const { ticking } = storeToRefs(technicalStore);
 
@@ -51,6 +53,7 @@ function tick() {
   metricStore.tickPopularity();
   metricStore.tickHealth();
   metricStore.tickBugs();
+  actionStore.tickPerks();
 }
 
 const worker = new GameLoopWorker();
