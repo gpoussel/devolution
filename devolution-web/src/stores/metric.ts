@@ -6,9 +6,17 @@ import { defineStore } from 'pinia';
 import { clamp } from '@/utils/number';
 import { randomIntegerInRange } from '@/utils/random';
 
-function computeIncrement(increasingChances: number, decreasingChances: number): number {
-  const increasingNumber = randomIntegerInRange(0, 500);
-  const decreasingNumber = randomIntegerInRange(0, 500);
+const HEALTH_ODDS = 1500;
+const POPULARITY_ODDS = 1000;
+const BUGS_ODDS = 500;
+
+function computeIncrement(
+  increasingChances: number,
+  decreasingChances: number,
+  odds: number,
+): number {
+  const increasingNumber = randomIntegerInRange(0, odds);
+  const decreasingNumber = randomIntegerInRange(0, odds);
 
   return (
     (increasingNumber < increasingChances ? 1 : 0) - (decreasingNumber < decreasingChances ? 1 : 0)
@@ -64,7 +72,11 @@ export const useMetricStore = defineStore('metric', {
     tickPopularity() {
       const newPopularity =
         this.popularity +
-        computeIncrement(this.chancesOfIncreasingPopularity, this.chancesOfDecreasingPopularity);
+        computeIncrement(
+          this.chancesOfIncreasingPopularity,
+          this.chancesOfDecreasingPopularity,
+          POPULARITY_ODDS,
+        );
       this.popularity = clamp(newPopularity, 0, 100);
     },
     addImpactOnPopularity(impact: number) {
@@ -85,7 +97,11 @@ export const useMetricStore = defineStore('metric', {
     tickHealth() {
       const newHealth =
         this.health +
-        computeIncrement(this.chancesOfIncreasingHealth, this.chancesOfDecreasingHealth);
+        computeIncrement(
+          this.chancesOfIncreasingHealth,
+          this.chancesOfDecreasingHealth,
+          HEALTH_ODDS,
+        );
       this.health = clamp(newHealth, 0, 100);
     },
     addImpactOnHealth(impact: number) {
@@ -97,7 +113,8 @@ export const useMetricStore = defineStore('metric', {
     },
     tickBugs() {
       const newBugs =
-        this.bugs + computeIncrement(this.chancesOfIncreasingBugs, this.chancesOfDecreasingBugs);
+        this.bugs +
+        computeIncrement(this.chancesOfIncreasingBugs, this.chancesOfDecreasingBugs, BUGS_ODDS);
       this.bugs = clamp(newBugs, 0, 1000);
     },
     addImpactOnBugs(impact: number) {

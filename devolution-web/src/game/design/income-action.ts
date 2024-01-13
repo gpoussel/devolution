@@ -30,7 +30,7 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
     },
     popularityImpact: 0,
     healthImpact: -1,
-    bugsImpact: 2,
+    bugsImpact: 8,
   },
   {
     id: 'basic-income-action-2',
