@@ -11,6 +11,9 @@ export interface IncomeAction {
     factor: Decimal;
     exponent: Decimal;
   };
+  popularityImpact: number;
+  healthImpact: number;
+  bugsImpact: number;
 }
 
 export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
@@ -25,6 +28,9 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
       factor: Decimal.fromNumber(10),
       exponent: Decimal.fromNumber(1.45),
     },
+    popularityImpact: 0,
+    healthImpact: -1,
+    bugsImpact: 8,
   },
   {
     id: 'basic-income-action-2',
@@ -37,6 +43,9 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
       factor: Decimal.fromNumber(150),
       exponent: Decimal.fromNumber(1.35),
     },
+    popularityImpact: 0,
+    healthImpact: -2,
+    bugsImpact: 0,
   },
   {
     id: 'basic-income-action-3',
@@ -49,6 +58,9 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
       factor: Decimal.fromNumber(350),
       exponent: Decimal.fromNumber(1.4),
     },
+    popularityImpact: 2,
+    healthImpact: -2,
+    bugsImpact: -3,
   },
   {
     id: 'basic-income-action-4',
@@ -61,6 +73,9 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
       factor: Decimal.fromNumber(1750),
       exponent: Decimal.fromNumber(1.35),
     },
+    popularityImpact: 2,
+    healthImpact: -1,
+    bugsImpact: -1,
   },
   {
     id: 'basic-income-action-5',
@@ -73,6 +88,9 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
       factor: Decimal.fromNumber(5000),
       exponent: Decimal.fromNumber(1.5),
     },
+    popularityImpact: 5,
+    healthImpact: -2,
+    bugsImpact: 1,
   },
   {
     id: 'basic-income-action-6',
@@ -85,6 +103,9 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
       factor: Decimal.fromNumber(6700),
       exponent: Decimal.fromNumber(1.5),
     },
+    popularityImpact: 1,
+    healthImpact: -2,
+    bugsImpact: -3,
   },
   {
     id: 'basic-income-action-7',
@@ -97,6 +118,9 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
       factor: Decimal.fromNumber(8250),
       exponent: Decimal.fromNumber(1.6),
     },
+    popularityImpact: 4,
+    healthImpact: -2,
+    bugsImpact: 0,
   },
   {
     id: 'basic-income-action-8',
@@ -109,6 +133,9 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
       factor: Decimal.fromNumber(12150),
       exponent: Decimal.fromNumber(1.7),
     },
+    popularityImpact: 0,
+    healthImpact: 4,
+    bugsImpact: 5,
   },
   {
     id: 'basic-income-action-9',
@@ -121,6 +148,9 @@ export const BASIC_INCOME_ACTIONS: IncomeAction[] = [
       factor: Decimal.fromNumber(14200),
       exponent: Decimal.fromNumber(1.7),
     },
+    popularityImpact: -3,
+    healthImpact: -1,
+    bugsImpact: 0,
   },
 ];
 

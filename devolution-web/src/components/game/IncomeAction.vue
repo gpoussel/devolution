@@ -3,11 +3,7 @@ import { computed } from 'vue';
 
 import { storeToRefs } from 'pinia';
 
-import {
-  getCoinsPerSecondIncrement,
-  getUpgradeCost,
-  type IncomeAction,
-} from '@/game/design';
+import { getCoinsPerSecondIncrement, getUpgradeCost, type IncomeAction } from '@/game/design';
 import { useActionStore } from '@/stores/action';
 import { useLevelStore } from '@/stores/level';
 import { useMetricStore } from '@/stores/metric';
@@ -48,6 +44,9 @@ function performAction() {
   if (allowed.value) {
     metricStore.addCoinsPerSecond(coinsPerSecondIncrement.value);
     metricStore.removeCoins(cost.value);
+    metricStore.addImpactOnBugs(action.bugsImpact);
+    metricStore.addImpactOnHealth(action.healthImpact);
+    metricStore.addImpactOnPopularity(action.popularityImpact);
     actionStore.increaseLevel(action);
   }
 }

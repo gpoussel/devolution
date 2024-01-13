@@ -10,8 +10,8 @@ import MetricCounter from './MetricCounter.vue';
 <template>
   <div class="flex items-center space-x-6">
     <MetricCoinCounter />
-    <MetricCounter :icon="starIcon" />
-    <MetricCounter :icon="hearIcon" />
-    <MetricCounter :icon="bugIcon" />
+    <MetricCounter property="popularity" :percent="true" :icon="starIcon" />
+    <MetricCounter property="health" :percent="true" :icon="hearIcon" />
+    <MetricCounter property="bugs" :percent="false" :icon="bugIcon" />
   </div>
 </template>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 import Decimal from 'break_infinity.js';
 import { storeToRefs } from 'pinia';
 
@@ -12,7 +14,14 @@ import DevelopmentBarText from './development/DevelopmentBarText.vue';
 import DevelopmentBarTitle from './development/DevelopmentBarTitle.vue';
 
 const metricStore = useMetricStore();
-const { coinsPerSecond } = storeToRefs(metricStore);
+const {
+  chancesOfIncreasingHealth,
+  chancesOfDecreasingHealth,
+  chancesOfIncreasingBugs,
+  chancesOfDecreasingBugs,
+  chancesOfIncreasingPopularity,
+  chancesOfDecreasingPopularity,
+} = storeToRefs(metricStore);
 
 const technicalStore = useTechnicalStore();
 const { ticking } = storeToRefs(technicalStore);
@@ -20,6 +29,7 @@ const { ticking } = storeToRefs(technicalStore);
 function setCoins(value: number) {
   metricStore.setCoins(new Decimal(value));
 }
+
 function setCoinsPerSecond(value: number) {
   metricStore.setCoinsPerSecond(new Decimal(value));
 }
@@ -30,6 +40,18 @@ function clearSave() {
 
 const coinValues = [0, 1e9];
 const coinPerSecondValues = [0, 10, 100, 8450];
+
+const healthTrend = computed(() => {
+  return chancesOfIncreasingHealth.value - chancesOfDecreasingHealth.value;
+});
+
+const popularityTrend = computed(() => {
+  return chancesOfIncreasingPopularity.value - chancesOfDecreasingPopularity.value;
+});
+
+const bugsTrend = computed(() => {
+  return chancesOfIncreasingBugs.value - chancesOfDecreasingBugs.value;
+});
 </script>
 
 <template>
@@ -61,7 +83,9 @@ const coinPerSecondValues = [0, 10, 100, 8450];
     >
       <CoinCounter :value="Decimal.fromNumber(coinValue)"></CoinCounter>
     </DevelopmentBarAction>
-    <DevelopmentBarText>CPS: <CoinPerSecondCounter :value="coinsPerSecond" /></DevelopmentBarText>
+    <DevelopmentBarText
+      >P: {{ popularityTrend }} / H: {{ healthTrend }} / B: {{ bugsTrend }}</DevelopmentBarText
+    >
     <DevelopmentBarAction
       @click="setCoinsPerSecond(coinPerSecondValue)"
       v-for="(coinPerSecondValue, key) of coinPerSecondValues"

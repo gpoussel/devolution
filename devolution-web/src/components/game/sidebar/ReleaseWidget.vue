@@ -17,7 +17,7 @@ const levelStore = useLevelStore();
 const { level } = storeToRefs(levelStore);
 
 const metricStore = useMetricStore();
-const { coins, coinsPerSecond } = storeToRefs(metricStore);
+const { coins, coinsPerSecond, popularity, health, bugs } = storeToRefs(metricStore);
 
 const actionStore = useActionStore();
 
@@ -26,7 +26,31 @@ const requiredCoins = computed(() => {
 });
 
 const requiredCoinsSatisfied = computed(() => {
-  return coins.value.greaterThan(requiredCoins.value);
+  return coins.value.greaterThanOrEqualTo(requiredCoins.value);
+});
+
+const minPopularity = computed(() => {
+  return PROGRESS_LEVELS[level.value].releaseCondition.minPopularity;
+});
+
+const minPopularitySatisfied = computed(() => {
+  return popularity.value >= minPopularity.value;
+});
+
+const minHealth = computed(() => {
+  return PROGRESS_LEVELS[level.value].releaseCondition.minHealth;
+});
+
+const minHealthSatisfied = computed(() => {
+  return !minHealth.value || health.value >= minHealth.value;
+});
+
+const maxBugs = computed(() => {
+  return PROGRESS_LEVELS[level.value].releaseCondition.maxBugs;
+});
+
+const maxBugsSatisfied = computed(() => {
+  return !maxBugs.value || bugs.value <= maxBugs.value;
 });
 
 const requiredCoinsPerSecond = computed(() => {
@@ -34,11 +58,17 @@ const requiredCoinsPerSecond = computed(() => {
 });
 
 const requiredCoinsPerSecondSatisfied = computed(() => {
-  return coinsPerSecond.value.greaterThan(requiredCoinsPerSecond.value);
+  return coinsPerSecond.value.greaterThanOrEqualTo(requiredCoinsPerSecond.value);
 });
 
 const allowed = computed(() => {
-  return requiredCoinsSatisfied.value && requiredCoinsPerSecondSatisfied.value;
+  return (
+    requiredCoinsSatisfied.value &&
+    requiredCoinsPerSecondSatisfied.value &&
+    minPopularitySatisfied.value &&
+    minHealthSatisfied.value &&
+    maxBugsSatisfied.value
+  );
 });
 
 function nextLevel() {
@@ -62,14 +92,39 @@ function nextLevel() {
           <th scope="row" class="px-6 py-3 text-xs uppercase">Required Money</th>
           <td><CoinCounter :value="requiredCoins" /></td>
           <td class="text-green w-8">
-            <IconCheckCircle width="16" v-if="requiredCoinsSatisfied" />
+            <IconCheckCircle class="text-inherit" width="16" v-if="requiredCoinsSatisfied" />
           </td>
         </tr>
         <tr class="border-b border-gray-400 last:border-0">
           <th scope="row" class="px-6 py-3 text-xs uppercase">Required Income</th>
           <td><CoinPerSecondCounter :value="requiredCoinsPerSecond" /></td>
           <td class="text-green w-8">
-            <IconCheckCircle width="16" v-if="requiredCoinsPerSecondSatisfied" />
+            <IconCheckCircle
+              class="text-inherit"
+              width="16"
+              v-if="requiredCoinsPerSecondSatisfied"
+            />
+          </td>
+        </tr>
+        <tr class="border-b border-gray-400 last:border-0" v-if="minPopularity">
+          <th scope="row" class="px-6 py-3 text-xs uppercase">Required Popularity</th>
+          <td>{{ minPopularity }}%</td>
+          <td class="text-green w-8">
+            <IconCheckCircle class="text-inherit" width="16" v-if="minPopularitySatisfied" />
+          </td>
+        </tr>
+        <tr class="border-b border-gray-400 last:border-0" v-if="minHealth">
+          <th scope="row" class="px-6 py-3 text-xs uppercase">Required Health</th>
+          <td>{{ minHealth }}%</td>
+          <td class="text-green w-8">
+            <IconCheckCircle class="text-inherit" width="16" v-if="minHealthSatisfied" />
+          </td>
+        </tr>
+        <tr class="border-b border-gray-400 last:border-0" v-if="maxBugs">
+          <th scope="row" class="px-6 py-3 text-xs uppercase">Max Bugs</th>
+          <td>{{ maxBugs }}%</td>
+          <td class="text-green w-8">
+            <IconCheckCircle class="text-inherit" width="16" v-if="maxBugsSatisfied" />
           </td>
         </tr>
       </table>
